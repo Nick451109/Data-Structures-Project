@@ -127,16 +127,18 @@ public class LinkedList<E> implements List<E> {
                    last.getNext().setPrior(nuevo);
                    last.setNext(nuevo);
         } else {
-            NodeList<E> t;
-            for (t = this.getFirst(); cont < (index - 1) ; t = t.getNext()) {
+            NodeListD<E> t;
+            for (t = last.getNext(); cont < (index - 1) ; t = t.getNext()) {
                 cont++;
             }
             System.out.println(t.getContent());
-            NodeList<E> nuevo = new NodeList<>(element);
+            NodeListD<E> nuevo = new NodeListD<>(element);
             nuevo.setNext(t.getNext());
+            nuevo.setPrior(t);
+            t.getNext().setPrior(nuevo);
             t.setNext(nuevo);
             System.out.println(nuevo.getContent());
-            if(nuevo.getNext() == null){
+            if(nuevo.getNext() == last.getNext()){ ///reviasr si esta comparacion es correcta
                 this.last = nuevo;
             }
         }
@@ -149,19 +151,21 @@ public class LinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException("No existe el indice");
         }
         else if (index == 0){
-                   NodeList<E> nuevo = first;
-                   this.first = nuevo.getNext();
-                   return nuevo.getContent();
+                   NodeListD<E> aEliminar = last.getNext();
+                   last.setNext(aEliminar.getNext());
+                   aEliminar.getNext().setPrior(last);
+                   return aEliminar.getContent();
         }
         else {
-            NodeList<E> t;
-            for (t = this.getFirst(); cont < (index-1) ; t = t.getNext()) {
+            NodeListD<E> t;
+            for (t = last.getNext(); cont < (index-1) ; t = t.getNext()) {
                 cont++;
                 ;
             }
-            NodeList<E> retorno = t.getNext();
+            NodeListD<E> retorno = t.getNext();
             t.setNext(retorno.getNext());
-            if ( retorno.getNext() == null ){
+            retorno.getNext().setPrior(retorno.getPrior());
+            if ( retorno.getNext() == last.getNext() ){
                this.last = t;
             }
             return retorno.getContent();
@@ -175,8 +179,8 @@ public class LinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException("No existe el indice");
          }
          else {
-            NodeList<E> t;
-            for (t = this.getFirst(); cont < (index) ; t = t.getNext()) {
+            NodeListD<E> t;
+            for (t = last.getNext();  cont < (index) ; t = t.getNext()) {
                 cont++;
                 ;
             }
@@ -192,8 +196,8 @@ public class LinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException("No existe el indice");
         } else {
             int cont = 0;
-            NodeList<E> t;
-            for (t = this.getFirst(); cont < (index) ; t = t.getNext()) {
+            NodeListD<E> t;
+            for (t = last.getNext();  cont < (index) ; t = t.getNext()) {
                 cont++;
             }
             t.setContent(element);
@@ -204,8 +208,8 @@ public class LinkedList<E> implements List<E> {
     @Override
     public String toString() {
         String s = "";
-        NodeList<E> t;
-        for (t = this.getFirst(); t != null; t = t.getNext()) {
+        NodeListD<E> t;
+        for (t = last.getNext();  t.getNext() != last.getNext(); t = t.getNext()) {
             s += t.getContent() + " ";
         }
         return s;
