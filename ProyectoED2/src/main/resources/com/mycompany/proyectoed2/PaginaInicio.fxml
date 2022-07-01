@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.PaginaInicioController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.PaginaInicioController">
    <children>
       <Label alignment="CENTER" layoutX="142.0" layoutY="14.0" prefHeight="48.0" prefWidth="316.0" text="App de Fotografias ">
          <font>
@@ -19,7 +19,13 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="269.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#ingresarAlbum" text="Ingresar:" />
+      <Button layoutX="260.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#ingresarAlbum" text="Ingresar:" />
       <Button layoutX="253.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#crearAlbum" text="Nuevo album " />
+      <Label layoutX="93.0" layoutY="227.0" prefHeight="25.0" prefWidth="197.0" text="Buscar por: ">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="buscarPor" layoutX="308.0" layoutY="240.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
