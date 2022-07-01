@@ -69,21 +69,5 @@ public class Registro {
             System.out.println(e);
         }
     }*/
-    public void saveFile(String nomfile) {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
 
-            sb.append(this.id).append("|");
-            sb.append(this.idDueño).append("|");
-            sb.append(this.nombre).append("|");
-            sb.append(this.raza).append("|");
-            sb.append(this.fechaNacimiento).append("|");
-            sb.append(this.tipo).append(System.getProperty("line.separator"));;
-
-            bw.write(sb.toString());
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-    }
 }

@@ -16,16 +16,16 @@ import java.time.LocalDate;
  */
 public class Fotografias {
 
-    private String iD;
+    private int iD;
     private String descripcion;
     private String lugar;
-    private ArrayList<String> personas;
+    private String personas;
     private String album;
     private String comentarios;
     private Integer reacciones;
     private LocalDate fecha;
 
-    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
+    public Fotografias(int iD, String descripcion, String lugar, String personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -37,7 +37,7 @@ public class Fotografias {
 
     }
 
-    public String getiD() {
+    public int getiD() {
         return iD;
     }
 
@@ -49,7 +49,7 @@ public class Fotografias {
         return lugar;
     }
 
-    public ArrayList<String> getPersonas() {
+    public String getPersonas() {
         return personas;
     }
 
@@ -57,7 +57,7 @@ public class Fotografias {
         return album;
     }
 
-    public void setiD(String iD) {
+    public void setiD(int iD) {
         this.iD = iD;
     }
 
@@ -69,7 +69,7 @@ public class Fotografias {
         this.lugar = lugar;
     }
 
-    public void setPersonas(ArrayList<String> personas) {
+    public void setPersonas(String personas) {
         this.personas = personas;
     }
 
