@@ -8,12 +8,12 @@ package TDAs;
  *
  * @author CAELOS JR 2018
  */
-public class LinkedList<E> implements List<E> {
+public class DLinkedList<E> implements List<E> {
 
     //private NodeList<E> first;
     private NodeListD<E> last;
 
-    public LinkedList() {
+    public DLinkedList() {
         this.last = null;
     }
 

@@ -16,13 +16,18 @@ public class Fotografias {
     private String lugar;
     private ArrayList<String> personas;
     private String album;
+    private String comentarios;
+    private Integer reacciones;
 
-    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas, String album) {
+    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.personas = personas;
         this.album = album;
+        this.comentarios = comentarios;
+        this.reacciones = reacciones;
+        
     }
 
     public String getiD() {
