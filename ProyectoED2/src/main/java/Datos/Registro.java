@@ -38,12 +38,15 @@ public class Registro {
         return listaAlbumes;
     }
 
-    public Registro(DLinkedList<Fotografias> listaFotos, ArrayList<String> listaAlbumes) {
-        this.listaFotos = listaFotos;
-        this.listaAlbumes = listaAlbumes;
+    public Registro() {
     }
 
+    /*public Registro(DLinkedList<Fotografias> listaFotos, ArrayList<String> listaAlbumes) {
+        this.listaFotos = listaFotos;
+     */
+
     public static void cargaListaFotos() {
+        DLinkedList<Fotografias> lFotos = new DLinkedList<>();
         try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {
             String linea;
             System.out.println("hola1--------------------------------------------------");
@@ -70,7 +73,9 @@ public class Registro {
                         Integer.valueOf(tokens[7]));
                 System.out.println(m.toString());
                 System.out.println("salimos del objeto");
-                listaFotos.addLast(m);
+                lFotos.addLast(m);
+                System.out.println("se añade a la primera");
+                listaFotos=lFotos;
                 System.out.println("hola--------------------------------------------------");
             }
         } catch (IOException e) {
