@@ -4,6 +4,9 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Fotografias;
+import Datos.Registro;
+import TDAs.DLinkedList;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -40,21 +43,37 @@ public class AlbumesController implements Initializable {
     private Label fotoPersonas;
     @FXML
     private Label fotoLug;
-
+    private Fotografias fActual;
+    private DLinkedList<Fotografias> lFotografias;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lFotografias= Registro.getListaFotos();
+        fActual = lFotografias.get(0);
         // TODO
     }    
+    
+    private void mostrarInformacio(Fotografias f){
+        NombreAlbum.setText(f.getAlbum());
+        fotoDesc.setText(f.getDescripcion());
+        fotoFecha.setText(f.getLugar());
+        fotoLug.setText(f.getLugar());
+        
+        
+    }
 
     @FXML
     private void fotoAnterior(MouseEvent event) {
+        fActual = lFotografias.getPriorD(fActual);
+        
     }
 
     @FXML
     private void sigFoto(MouseEvent event) {
+        fActual = lFotografias.getNextD(fActual);
+
     }
 
     @FXML

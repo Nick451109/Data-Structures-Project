@@ -4,6 +4,8 @@
  */
 package TDAs;
 
+import java.util.Iterator;
+
 /**
  *
  * @author CAELOS JR 2018
@@ -214,6 +216,26 @@ public class DLinkedList<E> implements List<E> {
         }
         return s;
     }
+    public E getNextD(E e){
+        NodeListD<E> nodoEncontrado = last; 
+        while(!nodoEncontrado.getContent().equals(e)){
+            nodoEncontrado=nodoEncontrado.getNext();
+        }
+        
+        return (nodoEncontrado.getNext()).getContent();
+    }
+    
+    public E getPriorD(E e){
+        NodeListD<E> nodoEncontrado = last; 
+        while(!nodoEncontrado.getContent().equals(e)){
+            nodoEncontrado=nodoEncontrado.getPrior();
+        }
+        return (nodoEncontrado.getPrior()).getContent();
+    }
+
+
+
+
 
 }
 

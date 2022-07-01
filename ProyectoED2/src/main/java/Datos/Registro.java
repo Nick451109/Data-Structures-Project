@@ -30,11 +30,11 @@ public class Registro {
         this.listaAlbumes = listaAlbumes;
     }
 
-    public DLinkedList<Fotografias> getListaFotos() {
+    public static DLinkedList<Fotografias> getListaFotos() {
         return listaFotos;
     }
 
-    public static ArrayList<String> getListaAlbumes() {
+    public  ArrayList<String> getListaAlbumes() {
         return listaAlbumes;
     }
 
