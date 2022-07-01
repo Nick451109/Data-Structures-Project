@@ -60,12 +60,11 @@ public class Registro {
                         tokens[5],
                         tokens[6],
                         Integer.valueOf(tokens[7]));
-                mascotas.add(m);
+                listaFotos.addLast(m);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return mascotas;
     }
 
 }
