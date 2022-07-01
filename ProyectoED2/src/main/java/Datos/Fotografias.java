@@ -5,6 +5,9 @@
 package Datos;
 
 import TDAs.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -12,6 +15,7 @@ import java.time.LocalDate;
  * @author CAELOS JR 2018
  */
 public class Fotografias {
+
     private String iD;
     private String descripcion;
     private String lugar;
@@ -21,7 +25,7 @@ public class Fotografias {
     private Integer reacciones;
     private LocalDate fecha;
 
-    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas,LocalDate fecha, String album, String comentarios, Integer reaccion) {
+    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -30,7 +34,7 @@ public class Fotografias {
         this.comentarios = comentarios;
         this.reacciones = reaccion;
         this.fecha = fecha;
-        
+
     }
 
     public String getiD() {
@@ -77,9 +81,28 @@ public class Fotografias {
     public String toString() {
         return "Fotografias{" + "iD=" + iD + ", descripcion=" + descripcion + ", lugar=" + lugar + ", personas=" + personas.toString() + ", album=" + album + '}';
     }
-    
+
     public String toSaver() {
         return (iD + "," + descripcion + "," + lugar + "," + personas.toString() + "," + album);
     }
-    
+
+    public void saveFile(String nomfile) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
+
+            sb.append(this.iD).append("|");
+            sb.append(this.descripcion).append("|");
+            sb.append(this.lugar).append("|");
+            sb.append(this.personas).append("|");
+            sb.append(this.album).append("|");
+            sb.append(this.comentarios).append("|");
+            sb.append(this.reacciones).append("|");
+            sb.append(this.fecha).append(System.getProperty("line.separator"));;
+
+            bw.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
 }
