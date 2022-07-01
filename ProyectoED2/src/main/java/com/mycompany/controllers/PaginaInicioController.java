@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Registro;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,11 +29,16 @@ public class PaginaInicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
     }    
 
     @FXML
     private void ingresarAlbum(MouseEvent event) {
+        System.out.println("entra-------------------");
+        Registro.cargaListaFotos();
+        System.out.println("Sale--------------------");
+        System.out.println(Registro.getListaFotos().toString());
     }
 
     @FXML

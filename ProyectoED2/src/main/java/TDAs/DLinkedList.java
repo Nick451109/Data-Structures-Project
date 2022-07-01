@@ -54,11 +54,14 @@ public class DLinkedList<E> implements List<E> {
         if (this.isEmpty()) {
             this.setLast(nuevo);
         } else {
-            this.getLast().setNext(nuevo);
             nuevo.setNext(last.getNext());
             nuevo.setPrior(last);
+            last.getNext().setPrior(nuevo);
+            last.setNext(nuevo);
+            this.setLast(nuevo);
+            //this.getLast().setNext(nuevo);
         }
-        this.setLast(nuevo);
+        //this.setLast(nuevo);
 
         return true;
     }
@@ -212,7 +215,7 @@ public class DLinkedList<E> implements List<E> {
         String s = "";
         NodeListD<E> t;
         for (t = last.getNext();  t.getNext() != last.getNext(); t = t.getNext()) {
-            s += t.getContent() + " ";
+            s += t.getContent().toString() + " ";
         }
         return s;
     }

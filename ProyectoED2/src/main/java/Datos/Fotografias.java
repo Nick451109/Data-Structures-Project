@@ -19,13 +19,13 @@ public class Fotografias {
     private int iD;
     private String descripcion;
     private String lugar;
-    private String personas;
+    private ArrayList<String> personas;
     private String album;
     private String comentarios;
     private Integer reacciones;
     private LocalDate fecha;
 
-    public Fotografias(int iD, String descripcion, String lugar, String personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
+    public Fotografias(int iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -49,7 +49,7 @@ public class Fotografias {
         return lugar;
     }
 
-    public String getPersonas() {
+    public ArrayList<String> getPersonas() {
         return personas;
     }
 
@@ -69,7 +69,7 @@ public class Fotografias {
         this.lugar = lugar;
     }
 
-    public void setPersonas(String personas) {
+    public void setPersonas(ArrayList<String> personas) {
         this.personas = personas;
     }
 
@@ -94,7 +94,7 @@ public class Fotografias {
             sb.append(this.iD).append("|");
             sb.append(this.descripcion).append("|");
             sb.append(this.lugar).append("|");
-            sb.append(this.personas).append("|");
+            sb.append(this.personas.toString()).append("|");
             sb.append(this.fecha).append("|");
             sb.append(this.album).append("|");
             sb.append(this.comentarios).append("|");
