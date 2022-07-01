@@ -86,18 +86,20 @@ public class Fotografias {
         return (iD + "," + descripcion + "," + lugar + "," + personas.toString() + "," + album);
     }
 
+    @SuppressWarnings("empty-statement")
     public void saveFile(String nomfile) {
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
-
+            //id, descripcion, lugar, personas,fecha,album, comentarios,reacciones
             sb.append(this.iD).append("|");
             sb.append(this.descripcion).append("|");
             sb.append(this.lugar).append("|");
             sb.append(this.personas).append("|");
+            sb.append(this.fecha).append("|");
             sb.append(this.album).append("|");
             sb.append(this.comentarios).append("|");
-            sb.append(this.reacciones).append("|");
-            sb.append(this.fecha).append(System.getProperty("line.separator"));;
+            sb.append(this.reacciones).append(System.getProperty("line.separator"));
+            ;;
 
             bw.write(sb.toString());
         } catch (IOException e) {
