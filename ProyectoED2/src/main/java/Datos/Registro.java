@@ -16,11 +16,11 @@ import java.time.LocalDate;
  */
 public class Registro {
 
-    private DLinkedList<Fotografias> listaFotos;
-    private ArrayList<String> listaAlbumes;
+    private static DLinkedList<Fotografias> listaFotos;
+    private  ArrayList<String> listaAlbumes;
 
-    public void setListaFotos(DLinkedList<Fotografias> listaFotos) {
-        this.listaFotos = listaFotos;
+    public static void setListaFotos(DLinkedList<Fotografias> listaFotos) {
+        listaFotos = listaFotos;
     }
 
     public void setListaAlbumes(ArrayList<String> listaAlbumes) {
@@ -31,7 +31,7 @@ public class Registro {
         return listaFotos;
     }
 
-    public ArrayList<String> getListaAlbumes() {
+    public static ArrayList<String> getListaAlbumes() {
         return listaAlbumes;
     }
 
