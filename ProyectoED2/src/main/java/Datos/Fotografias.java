@@ -5,6 +5,9 @@
 package Datos;
 
 import TDAs.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -12,16 +15,17 @@ import java.time.LocalDate;
  * @author CAELOS JR 2018
  */
 public class Fotografias {
-    private String iD;
+
+    private int iD;
     private String descripcion;
     private String lugar;
-    private ArrayList<String> personas;
+    private String personas;
     private String album;
     private String comentarios;
     private Integer reacciones;
     private LocalDate fecha;
 
-    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas,LocalDate fecha, String album, String comentarios, Integer reaccion) {
+    public Fotografias(int iD, String descripcion, String lugar, String personas, LocalDate fecha, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -30,10 +34,10 @@ public class Fotografias {
         this.comentarios = comentarios;
         this.reacciones = reaccion;
         this.fecha = fecha;
-        
+
     }
 
-    public String getiD() {
+    public int getiD() {
         return iD;
     }
 
@@ -45,7 +49,7 @@ public class Fotografias {
         return lugar;
     }
 
-    public ArrayList<String> getPersonas() {
+    public String getPersonas() {
         return personas;
     }
 
@@ -53,7 +57,7 @@ public class Fotografias {
         return album;
     }
 
-    public void setiD(String iD) {
+    public void setiD(int iD) {
         this.iD = iD;
     }
 
@@ -65,7 +69,7 @@ public class Fotografias {
         this.lugar = lugar;
     }
 
-    public void setPersonas(ArrayList<String> personas) {
+    public void setPersonas(String personas) {
         this.personas = personas;
     }
 
@@ -77,9 +81,30 @@ public class Fotografias {
     public String toString() {
         return "Fotografias{" + "iD=" + iD + ", descripcion=" + descripcion + ", lugar=" + lugar + ", personas=" + personas.toString() + ", album=" + album + '}';
     }
-    
+
     public String toSaver() {
         return (iD + "," + descripcion + "," + lugar + "," + personas.toString() + "," + album);
     }
-    
+
+    @SuppressWarnings("empty-statement")
+    public void saveFile(String nomfile) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
+            //id, descripcion, lugar, personas,fecha,album, comentarios,reacciones
+            sb.append(this.iD).append("|");
+            sb.append(this.descripcion).append("|");
+            sb.append(this.lugar).append("|");
+            sb.append(this.personas).append("|");
+            sb.append(this.fecha).append("|");
+            sb.append(this.album).append("|");
+            sb.append(this.comentarios).append("|");
+            sb.append(this.reacciones).append(System.getProperty("line.separator"));
+            ;;
+
+            bw.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
 }

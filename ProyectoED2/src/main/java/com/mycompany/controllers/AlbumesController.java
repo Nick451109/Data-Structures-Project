@@ -4,13 +4,22 @@
  */
 package com.mycompany.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -50,7 +59,9 @@ public class AlbumesController implements Initializable {
 
     @FXML
     private void agregarFoto(MouseEvent event) {
+
     }
+   
 
     @FXML
     private void modificarInfo(MouseEvent event) {
@@ -59,5 +70,6 @@ public class AlbumesController implements Initializable {
     @FXML
     private void regresarInicio(MouseEvent event) {
     }
+
     
 }

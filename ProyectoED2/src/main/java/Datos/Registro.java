@@ -7,7 +7,10 @@ package Datos;
 import TDAs.ArrayList;
 import TDAs.DLinkedList;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -40,7 +43,7 @@ public class Registro {
         this.listaAlbumes = listaAlbumes;
     }
 
-    public void cargaListaFotos() {
+    /*public void cargaListaFotos() {
         java.util.ArrayList<Fotografias> mascotas = new java.util.ArrayList<>();
         try (BufferedReader bw = new BufferedReader(new FileReader(nomfile))) {
             String linea;
@@ -52,8 +55,8 @@ public class Registro {
                     personasAgg.addLast(s);
                 }
                 Fotografias m = new Fotografias(
-                        tokens[0],
-                        tokens[1],
+                        tokens[0], //id
+                        tokens[1], //descrpcion
                         tokens[2],
                         personasAgg,
                         LocalDate.parse(tokens[4]),//revisar para que devuelva un arrayList
@@ -65,6 +68,6 @@ public class Registro {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
+    }*/
 
 }
