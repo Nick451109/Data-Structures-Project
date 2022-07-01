@@ -34,7 +34,7 @@ public class Registro {
         return listaFotos;
     }
 
-    public  ArrayList<String> getListaAlbumes() {
+    public static ArrayList<String> getListaAlbumes() {
         return listaAlbumes;
     }
 
@@ -43,17 +43,22 @@ public class Registro {
         this.listaAlbumes = listaAlbumes;
     }
 
-    public void cargaListaFotos() {
-        java.util.ArrayList<Fotografias> mascotas = new java.util.ArrayList<>();
+    public static void cargaListaFotos() {
         try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {
             String linea;
+            System.out.println("hola1--------------------------------------------------");
             while ((linea = bw.readLine()) != null) {
                 String[] tokens = linea.split("\\|");
                 String[] personas = tokens[3].split(",");
+                System.out.println("hola2--------------------------------------------------");
                 ArrayList<String> personasAgg = new ArrayList<>();
                 for (String s : personas) {
+                    System.out.println(s+"----------------------------------------------------");
                     personasAgg.addLast(s);
+                    System.out.println("si se paso_______________________________________________");
                 }
+                System.out.println(personasAgg.toString());
+                System.out.println(tokens[0]+tokens[1]+tokens[2]+personasAgg.toString()+tokens[4]+tokens[5]+tokens[6]+tokens[7]);
                 Fotografias m = new Fotografias(
                         Integer.valueOf(tokens[0]), //id
                         tokens[1], //descrpcion
@@ -63,10 +68,14 @@ public class Registro {
                         tokens[5],
                         tokens[6],
                         Integer.valueOf(tokens[7]));
+                System.out.println(m.toString());
+                System.out.println("salimos del objeto");
                 listaFotos.addLast(m);
+                System.out.println("hola--------------------------------------------------");
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println("hay error--------------------------***************");
+            System.out.println(e.getClass());
         }
     }
 
