@@ -15,6 +15,7 @@ import java.time.LocalDate;
  * @author CAELOS JR 2018
  */
 public class Registro {
+
     private DLinkedList<Fotografias> listaFotos;
     private ArrayList<String> listaAlbumes;
 
@@ -45,13 +46,20 @@ public class Registro {
             String linea;
             while ((linea = bw.readLine()) != null) {
                 String[] tokens = linea.split("\\|");
+                String[] personas = tokens[3].split(",");
+                ArrayList<String> personasAgg = new ArrayList<>();
+                for (String s : personas) {
+                    personasAgg.addLast(s);
+                }
                 Fotografias m = new Fotografias(
                         tokens[0],
                         tokens[1],
-                       //ArrayList<String> personas = new tokens[2].split(","),//revisar para que devuelva un arrayList
-                        tokens[3],
+                        tokens[2],
+                        personasAgg,
+                        LocalDate.parse(tokens[4]),//revisar para que devuelva un arrayList
                         tokens[5],
-                        LocalDate.parse(tokens[4]));
+                        tokens[6],
+                        Integer.valueOf(tokens[7]));
                 mascotas.add(m);
             }
         } catch (Exception e) {
@@ -59,7 +67,5 @@ public class Registro {
         }
         return mascotas;
     }
-    
-    
-}
 
+}

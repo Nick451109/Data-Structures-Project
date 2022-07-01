@@ -5,6 +5,7 @@
 package Datos;
 
 import TDAs.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -18,15 +19,17 @@ public class Fotografias {
     private String album;
     private String comentarios;
     private Integer reacciones;
+    private LocalDate fecha;
 
-    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas, String album, String comentarios, Integer reaccion) {
+    public Fotografias(String iD, String descripcion, String lugar, ArrayList<String> personas,LocalDate fecha, String album, String comentarios, Integer reaccion) {
         this.iD = iD;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.personas = personas;
         this.album = album;
         this.comentarios = comentarios;
-        this.reacciones = reacciones;
+        this.reacciones = reaccion;
+        this.fecha = fecha;
         
     }
 
