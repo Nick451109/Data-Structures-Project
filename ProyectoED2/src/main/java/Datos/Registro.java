@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class Registro {
 
     private static DLinkedList<Fotografias> listaFotos;
-    private  ArrayList<String> listaAlbumes;
+    private static ArrayList<String> listaAlbumes;
 
     public static void setListaFotos(DLinkedList<Fotografias> listaFotos) {
         listaFotos = listaFotos;
@@ -43,9 +43,9 @@ public class Registro {
         this.listaAlbumes = listaAlbumes;
     }
 
-    /*public void cargaListaFotos() {
+    public void cargaListaFotos() {
         java.util.ArrayList<Fotografias> mascotas = new java.util.ArrayList<>();
-        try (BufferedReader bw = new BufferedReader(new FileReader(nomfile))) {
+        try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {
             String linea;
             while ((linea = bw.readLine()) != null) {
                 String[] tokens = linea.split("\\|");
@@ -55,7 +55,7 @@ public class Registro {
                     personasAgg.addLast(s);
                 }
                 Fotografias m = new Fotografias(
-                        tokens[0], //id
+                        Integer.valueOf(tokens[0]), //id
                         tokens[1], //descrpcion
                         tokens[2],
                         personasAgg,
@@ -68,6 +68,6 @@ public class Registro {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }*/
+    }
 
 }

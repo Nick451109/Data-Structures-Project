@@ -5,6 +5,7 @@
 package com.mycompany.controllers;
 
 import Datos.Fotografias;
+import TDAs.ArrayList;
 import com.mycompany.util.Util;
 import java.io.File;
 import java.io.IOException;
@@ -53,13 +54,18 @@ public class AgregarFotoController implements Initializable {
         int id = Util.nextID("Fotos.txt");
         String descripcion = lbldescp.getText();
         String lugar = lbllugar.getText();
-        String personas = lblpersonas.getText();
+        String personasi = lblpersonas.getText();
+        String[] personasi2 = personasi.split(",");
+        ArrayList<String> personasF = new ArrayList<>();
+        for(String s: personasi2){
+            personasF.addLast(s);
+        }
         LocalDate fecha = LocalDate.now();
         String album = lblalbum.getText();
         String comentarios = " ";
         int reacciones = 0;
         //String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion
-        Fotografias f1 = new Fotografias(id, descripcion, lugar, personas,fecha,album, comentarios,reacciones);
+        Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF,fecha,album, comentarios,reacciones);
         f1.saveFile("Fotos.txt");
         
         FileChooser fil_chooser = new FileChooser();
