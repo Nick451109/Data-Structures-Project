@@ -1,2 +1,3 @@
 1|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 2|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
+3|De viajecitop|Guayaquil|nick  juan  amy |2022-07-01|Viaje centro| |0

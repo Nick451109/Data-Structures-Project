@@ -28,8 +28,11 @@ import javafx.stage.FileChooser;
  *
  * @author CAELOS JR 2018
  */
+ 
 public class AgregarFotoController implements Initializable {
-
+    
+    int idImagen;
+    
     @FXML
     private TextField lbldescp;
     @FXML
@@ -47,11 +50,23 @@ public class AgregarFotoController implements Initializable {
         
         // TODO
     }    
+    
+        public static String getExtension(String filename) {
+        String extension = "";
+
+        int i = filename.lastIndexOf('.');
+        if (i
+                > 0) {
+            extension = filename.substring(i + 1);
+        }
+        return extension;
+    }
 
     @FXML
     private void seleccionarFoto(ActionEvent event) {
         
         int id = Util.nextID("Fotos.txt");
+        idImagen = id;
         String descripcion = lbldescp.getText();
         String lugar = lbllugar.getText();
         String personasi = lblpersonas.getText();
@@ -78,8 +93,9 @@ public class AgregarFotoController implements Initializable {
         fil_chooser.getExtensionFilters().add(extFilter2);
         fil_chooser.getExtensionFilters().add(extFilter3);
         File file = fil_chooser.showOpenDialog(null);
+        String extension = AgregarFotoController.getExtension(file.getName());
 
-        Path a = Paths.get("src/main/resources/img/" + file.getName() ); //implementar metodo delete de Files
+        Path a = Paths.get("src/main/resources/img/" + this.idImagen + "." + extension ); //implementar metodo delete de Files
 
         Path de = Paths.get(file.toURI());
 
