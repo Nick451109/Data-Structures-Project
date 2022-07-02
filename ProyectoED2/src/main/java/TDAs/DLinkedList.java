@@ -33,14 +33,17 @@ public class DLinkedList<E> implements List<E> {
             return false;
         }
         NodeListD<E> nuevo = new NodeListD<>(e);
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             this.setLast(nuevo);
+            nuevo.setNext(last);
+            nuevo.setPrior(last);
             return true;
-        }else{
-            NodeListD<E> antiguoLast = this.getLast();
-            nuevo.setPrior(antiguoLast);
-            nuevo.setNext(antiguoLast.getNext());
-            this.setLast(nuevo);
+        } else {
+            NodeListD<E> antiguoFirst = this.getLast().getNext();
+            nuevo.setPrior(last);
+            nuevo.setNext(this.getLast().getNext());
+            this.getLast().getNext().setPrior(nuevo);
+            last.setNext(nuevo);
             return true;
         }
     } //revisar
@@ -48,15 +51,23 @@ public class DLinkedList<E> implements List<E> {
     @Override
     public boolean addLast(E e) {
         if (e == null) {
+            System.out.println("entro 1 if");
             return false;
         }
         NodeListD<E> nuevo = new NodeListD<>(e);
         if (this.isEmpty()) {
+            System.out.println("entro 2 if");
             this.setLast(nuevo);
+            nuevo.setNext(last);
+            nuevo.setPrior(last);
         } else {
+            NodeListD<E> siguienteN = new NodeListD<>(e);
+            System.out.println("entro 3 if");
             nuevo.setNext(last.getNext());
             nuevo.setPrior(last);
-            last.getNext().setPrior(nuevo);
+            siguienteN = last.getNext();
+            siguienteN.setPrior(nuevo);
+//last.getNext().setPrior(nuevo);
             last.setNext(nuevo);
             this.setLast(nuevo);
             //this.getLast().setNext(nuevo);
@@ -72,6 +83,9 @@ public class DLinkedList<E> implements List<E> {
             System.out.println("LinkedList vacia");
             return null;
         }
+        if(this.size() == 1){
+            this.last = null;
+        }
         NodeListD<E> eliminado = last.getNext();
         last.setNext(eliminado.getNext());
         eliminado.getNext().setPrior(last);
@@ -83,6 +97,9 @@ public class DLinkedList<E> implements List<E> {
         if (this.isEmpty()) {
             System.out.println("LinkedList vacia");
             return null;
+        }
+        if(this.size() == 1){
+            this.last = null;
         }
         NodeListD<E> eliminado = last;
         //NodeList<E> t;
@@ -96,15 +113,21 @@ public class DLinkedList<E> implements List<E> {
 
     @Override
     public int size() {
-        if(this.getLast().getNext() == null && this.getLast().getPrior() == null){
+        if (this.getLast().getNext() == last && this.getLast().getPrior() == last) {
             return 1;
         }
         int cont = 0;
-        NodeListD<E> t;
-        for (t = this.getLast().getNext(); t != last; t = t.getNext()) {
+        NodeListD<E> t = last.getNext();
+        while(true){
             cont++;
+            t = t.getNext();
+            if (t == last.getNext())
+                break;
         }
-        cont++;
+        //for (t = this.getLast().getNext(); t != last; t = t.getNext()) {
+        //    cont++;
+        //}
+        //cont++;
         return cont;
     }
 
@@ -123,17 +146,17 @@ public class DLinkedList<E> implements List<E> {
         int cont = 0;
         if (element == null) {
             System.out.println("No hay contenido");
-        } else if (index > size() ||index < 0) {
+        } else if (index > size() || index < 0) {
             throw new IndexOutOfBoundsException("No existe el indice");
-        } else if (index == 0){
-                   NodeListD<E> nuevo = new NodeListD<>(element);
-                   nuevo.setNext(last.getNext());
-                   nuevo.setPrior(last);
-                   last.getNext().setPrior(nuevo);
-                   last.setNext(nuevo);
+        } else if (index == 0) {
+            NodeListD<E> nuevo = new NodeListD<>(element);
+            nuevo.setNext(last.getNext());
+            nuevo.setPrior(last);
+            last.getNext().setPrior(nuevo);
+            last.setNext(nuevo);
         } else {
             NodeListD<E> t;
-            for (t = last.getNext(); cont < (index - 1) ; t = t.getNext()) {
+            for (t = last.getNext(); cont < (index - 1); t = t.getNext()) {
                 cont++;
             }
             System.out.println(t.getContent());
@@ -143,7 +166,7 @@ public class DLinkedList<E> implements List<E> {
             t.getNext().setPrior(nuevo);
             t.setNext(nuevo);
             System.out.println(nuevo.getContent());
-            if(nuevo.getNext() == last.getNext()){ ///reviasr si esta comparacion es correcta
+            if (nuevo.getNext() == last.getNext()) { ///reviasr si esta comparacion es correcta
                 this.last = nuevo;
             }
         }
@@ -152,26 +175,24 @@ public class DLinkedList<E> implements List<E> {
     @Override
     public E remove(int index) {
         int cont = 0;
-        if (index >size() ||index < 0) {
+        if (index > size() || index < 0) {
             throw new IndexOutOfBoundsException("No existe el indice");
-        }
-        else if (index == 0){
-                   NodeListD<E> aEliminar = last.getNext();
-                   last.setNext(aEliminar.getNext());
-                   aEliminar.getNext().setPrior(last);
-                   return aEliminar.getContent();
-        }
-        else {
+        } else if (index == 0) {
+            NodeListD<E> aEliminar = last.getNext();
+            last.setNext(aEliminar.getNext());
+            aEliminar.getNext().setPrior(last);
+            return aEliminar.getContent();
+        } else {
             NodeListD<E> t;
-            for (t = last.getNext(); cont < (index-1) ; t = t.getNext()) {
+            for (t = last.getNext(); cont < (index - 1); t = t.getNext()) {
                 cont++;
                 ;
             }
             NodeListD<E> retorno = t.getNext();
             t.setNext(retorno.getNext());
             retorno.getNext().setPrior(retorno.getPrior());
-            if ( retorno.getNext() == last.getNext() ){
-               this.last = t;
+            if (retorno.getNext() == last.getNext()) {
+                this.last = t;
             }
             return retorno.getContent();
         }
@@ -180,17 +201,16 @@ public class DLinkedList<E> implements List<E> {
     @Override
     public E get(int index) {
         int cont = 0;
-         if (index > size() || index < 0) {
+        if (index > size() || index < 0) {
             throw new IndexOutOfBoundsException("No existe el indice");
-         }
-         else {
+        } else {
             NodeListD<E> t;
-            for (t = last.getNext();  cont < (index) ; t = t.getNext()) {
+            for (t = last.getNext(); cont < (index); t = t.getNext()) {
                 cont++;
                 ;
             }
             return t.getContent();
-         }
+        }
     }
 
     @Override
@@ -202,7 +222,7 @@ public class DLinkedList<E> implements List<E> {
         } else {
             int cont = 0;
             NodeListD<E> t;
-            for (t = last.getNext();  cont < (index) ; t = t.getNext()) {
+            for (t = last.getNext(); cont < (index); t = t.getNext()) {
                 cont++;
             }
             t.setContent(element);
@@ -213,25 +233,54 @@ public class DLinkedList<E> implements List<E> {
     @Override
     public String toString() {
         String s = "";
-        NodeListD<E> t;
-        for (t = last.getNext();  t.getNext() != last.getNext(); t = t.getNext()) {
+        NodeListD<E> t = last.getNext();
+        do {
             s += t.getContent().toString() + " ";
-        }
+            t = t.getNext();
+        }while(t.getNext() != last.getNext().getNext());
+        //for (t = last.getNext(); t.getNext() != last.getNext(); t = t.getNext()) {
+        //    s += t.getContent().toString() + " ";
+        //}
         return s;
     }
-    public E getNextD(E e){
-        NodeListD<E> nodoEncontrado = last; 
-        while(!nodoEncontrado.getContent().equals(e)){
-            nodoEncontrado=nodoEncontrado.getNext();
+    
+    public Integer find(E e) {
+        if (e == null) {
+            System.out.println("entro 1 if");
+            return null;
         }
-        
+        NodeListD<E> nuevo = new NodeListD<>(e);
+        if (this.isEmpty()) {
+            return null;
+        }
+        int cont = 0;
+        NodeListD<E> t = last.getNext();
+        while(true){
+            cont++;
+            t = t.getNext();
+            if (t.getContent().equals(e))
+                break;
+        }
+        //for (t = this.getLast().getNext(); t != last; t = t.getNext()) {
+        //    cont++;
+        //}
+        //cont++;
+        return cont;
+    }
+
+    public E getNextD(E e) {
+        NodeListD<E> nodoEncontrado = last;
+        while (!nodoEncontrado.getContent().equals(e)) {
+            nodoEncontrado = nodoEncontrado.getNext();
+        }
+
         return (nodoEncontrado.getNext()).getContent();
     }
-    
-    public E getPriorD(E e){
-        NodeListD<E> nodoEncontrado = last; 
-        while(!nodoEncontrado.getContent().equals(e)){
-            nodoEncontrado=nodoEncontrado.getPrior();
+
+    public E getPriorD(E e) {
+        NodeListD<E> nodoEncontrado = last;
+        while (!nodoEncontrado.getContent().equals(e)) {
+            nodoEncontrado = nodoEncontrado.getPrior();
         }
         return (nodoEncontrado.getPrior()).getContent();
     }

@@ -38,11 +38,13 @@ public class Registro {
         return listaAlbumes;
     }
 
+    /*
     public Registro(DLinkedList<Fotografias> listaFotos, ArrayList<String> listaAlbumes) {
         this.listaFotos = listaFotos;
         this.listaAlbumes = listaAlbumes;
     }
-
+    */
+    
     public static void cargaListaFotos() {
         try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {
             String linea;

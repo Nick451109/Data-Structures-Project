@@ -78,6 +78,21 @@ public class Fotografias {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    
+    public boolean equals(Fotografias e) {
+        if(this.getiD() == e.getiD()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         return "Fotografias{" + "iD=" + iD + ", descripcion=" + descripcion + ", lugar=" + lugar + ", personas=" + personas.toString() + ", album=" + album + '}';
     }

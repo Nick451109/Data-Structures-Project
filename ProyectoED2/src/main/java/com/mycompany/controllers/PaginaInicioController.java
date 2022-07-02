@@ -33,6 +33,7 @@ public class PaginaInicioController implements Initializable {
 
     @FXML
     private void ingresarAlbum(MouseEvent event) {
+        Registro unico = new Registro();
         System.out.println("entra-------------------");
         Registro.cargaListaFotos();
         System.out.println("Sale--------------------");
