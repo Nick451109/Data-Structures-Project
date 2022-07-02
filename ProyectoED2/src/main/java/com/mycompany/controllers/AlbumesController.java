@@ -55,7 +55,7 @@ public class AlbumesController implements Initializable {
         // TODO
     }    
     
-    private void mostrarInformacio(Fotografias f){
+    private void mostrarInformacion(Fotografias f){
         NombreAlbum.setText(f.getAlbum());
         fotoDesc.setText(f.getDescripcion());
         fotoFecha.setText(f.getLugar());
@@ -67,12 +67,14 @@ public class AlbumesController implements Initializable {
     @FXML
     private void fotoAnterior(MouseEvent event) {
         fActual = lFotografias.getPriorD(fActual);
+        mostrarInformacion(fActual);
         
     }
 
     @FXML
     private void sigFoto(MouseEvent event) {
         fActual = lFotografias.getNextD(fActual);
+        mostrarInformacion(fActual); 
 
     }
 

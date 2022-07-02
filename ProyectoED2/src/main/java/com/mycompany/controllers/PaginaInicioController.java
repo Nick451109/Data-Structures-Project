@@ -21,6 +21,8 @@ public class PaginaInicioController implements Initializable {
 
     @FXML
     private ComboBox<?> listaAlbumes;
+    @FXML
+    private ComboBox<?> buscarPor;
 
     /**
      * Initializes the controller class.
