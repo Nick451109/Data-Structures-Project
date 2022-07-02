@@ -23,13 +23,12 @@ public class Registro {
     private static ArrayList<String> listaAlbumes = new ArrayList<>();
 
     public static void setListaFotos(DLinkedList<Fotografias> listaFotos) {
-        listaFotos = listaFotos;
+        Registro.listaFotos = listaFotos;
     }
 
     public static void setListaAlbumes(ArrayList<String> listaAlbumes) {
         listaAlbumes = listaAlbumes;
     }
-
     public static DLinkedList<Fotografias> getListaFotos() {
         return listaFotos;
     }
@@ -112,6 +111,32 @@ public class Registro {
         }
     }
     
+    public static Fotografias buscarPAlbum(String S){
+        String albumComp = "";
+        for( int i = 0; i < listaFotos.size(); i++ ){
+            albumComp = listaFotos.get(i).getAlbum();
+            if(S.toUpperCase().equals(albumComp.toUpperCase())){
+                 return listaFotos.get(i);
+            }
+        }return null;        
+    }
     
+    public static Fotografias buscarSAlbum(Fotografias f){
+        Integer posAct = listaFotos.find(f);
+        for( int i = posAct; i < listaFotos.size() + posAct; i++ ){
+            if(f.getAlbum().equals(listaFotos.get(i).getAlbum()))
+                return listaFotos.get(i);
+        }
+        return null;
+    }
+    
+    public static Fotografias buscarPAlbum(Fotografias f){
+        Integer posAct = listaFotos.find(f);
+        for( int i = posAct; i < listaFotos.size() + posAct; i++ ){
+            if(f.getAlbum().equals(listaFotos.get(i).getAlbum()))
+                return listaFotos.get(i);
+        }
+        return null;
+    }
 
 }

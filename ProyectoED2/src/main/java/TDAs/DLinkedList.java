@@ -113,6 +113,9 @@ public class DLinkedList<E> implements List<E> {
 
     @Override
     public int size() {
+        if(this.getLast() == null){
+            return 0;
+        }
         if (this.getLast().getNext() == last && this.getLast().getPrior() == last) {
             return 1;
         }
@@ -201,9 +204,14 @@ public class DLinkedList<E> implements List<E> {
     @Override
     public E get(int index) {
         int cont = 0;
-        if (index > size() || index < 0) {
+        if(this.size() == 0){
             throw new IndexOutOfBoundsException("No existe el indice");
-        } else {
+        }else{
+        if (index > size() ) {
+            index = index % this.size();
+        }if (index < 0){
+               index = ((index%this.size())+this.size());
+        }
             NodeListD<E> t;
             for (t = last.getNext(); cont < (index); t = t.getNext()) {
                 cont++;
@@ -256,10 +264,13 @@ public class DLinkedList<E> implements List<E> {
         int cont = 0;
         NodeListD<E> t = last.getNext();
         while(true){
-            cont++;
-            t = t.getNext();
             if (t.getContent().equals(e))
                 break;
+            cont++;
+            t = t.getNext();
+            
+            if (cont >= this.size())
+                return null;
         }
         //for (t = this.getLast().getNext(); t != last; t = t.getNext()) {
         //    cont++;

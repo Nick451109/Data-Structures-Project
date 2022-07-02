@@ -5,6 +5,8 @@
 package com.mycompany.controllers;
 
 import Datos.Registro;
+import com.mycompany.proyectoed2.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -34,14 +36,16 @@ public class CrearAlbumController implements Initializable {
     }    
 
     @FXML
-    private void crearAlbum(MouseEvent event) {
+    private void crearAlbum(MouseEvent event) throws IOException {
         String nombreA = nombreAlbum.getText().trim();
         Registro.crearAlbum(nombreA);
         System.out.println(Registro.getListaAlbumes());
+        App.setRoot("PaginaInicio");
     }
 
     @FXML
-    private void paginaAnterior(MouseEvent event) {
+    private void paginaAnterior(MouseEvent event) throws IOException {
+        App.setRoot("PaginaInicio");
     }
     
 }
