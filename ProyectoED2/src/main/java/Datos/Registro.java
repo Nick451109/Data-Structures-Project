@@ -26,8 +26,8 @@ public class Registro {
         listaFotos = listaFotos;
     }
 
-    public void setListaAlbumes(ArrayList<String> listaAlbumes) {
-        this.listaAlbumes = listaAlbumes;
+    public static void setListaAlbumes(ArrayList<String> listaAlbumes) {
+        listaAlbumes = listaAlbumes;
     }
 
     public static DLinkedList<Fotografias> getListaFotos() {

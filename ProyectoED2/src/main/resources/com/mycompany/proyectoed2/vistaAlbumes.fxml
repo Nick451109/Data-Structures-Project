@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
+   <children>
+      <Label fx:id="Album" layoutX="107.0" layoutY="25.0" prefHeight="18.0" prefWidth="102.0" />
+      <Label layoutX="35.0" layoutY="34.0" text="ALBUM:" />
+      <Label layoutX="271.0" layoutY="34.0" text="Buscar Por:" />
+      <RadioButton fx:id="rbLugar" layoutX="341.0" layoutY="21.0" mnemonicParsing="false" text="Lugar" />
+      <RadioButton fx:id="rbPersona" layoutX="341.0" layoutY="52.0" mnemonicParsing="false" text="Persona" />
+      <ComboBox fx:id="cbLugar" layoutX="411.0" layoutY="13.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbPersonas" layoutX="411.0" layoutY="48.0" prefWidth="150.0" />
+      <ComboBox layoutX="83.0" layoutY="30.0" prefWidth="150.0" />
+      <ScrollPane layoutX="35.0" layoutY="100.0" prefHeight="274.0" prefWidth="534.0">
+         <content>
+            <TitledPane fx:id="galleria" animated="false" prefHeight="271.0" prefWidth="533.0" text="untitled" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
