@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Registro;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -26,11 +27,17 @@ public class CrearAlbumController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("________________________________________________");
+        System.out.println(Registro.getListaFotos());
+        System.out.println("_______________________________________________");
         // TODO
     }    
 
     @FXML
     private void crearAlbum(MouseEvent event) {
+        String nombreA = nombreAlbum.getText().trim();
+        Registro.crearAlbum(nombreA);
+        System.out.println(Registro.getListaAlbumes());
     }
 
     @FXML

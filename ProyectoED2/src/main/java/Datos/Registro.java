@@ -19,8 +19,8 @@ import java.time.LocalDate;
  */
 public class Registro {
 
-    private static DLinkedList<Fotografias> listaFotos;
-    private static ArrayList<String> listaAlbumes;
+    private static DLinkedList<Fotografias> listaFotos = new DLinkedList<>();
+    private static ArrayList<String> listaAlbumes = new ArrayList<>();
 
     public static void setListaFotos(DLinkedList<Fotografias> listaFotos) {
         listaFotos = listaFotos;
@@ -83,5 +83,35 @@ public class Registro {
             System.out.println(e.getClass());
         }
     }
+    
+    public static void cargaListaALbum() {
+        try (BufferedReader bw = new BufferedReader(new FileReader("AlbumL.txt"))) {
+            String linea;
+            System.out.println("hola1--------------------------------------------------");
+            while ((linea = bw.readLine()) != null){ 
+                listaAlbumes.addLast(linea.trim());
+                System.out.println("hola--------------------------------------------------");
+            }
+        } catch (IOException e) {
+            System.out.println("hay error--------------------------***************");
+            System.out.println(e.getClass());
+        }
+    }
+    
+    public static void crearAlbum(String nombreA){
+        
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("AlbumL.txt", true))) {
+            //id, descripcion, lugar, personas,fecha,album, comentarios,reacciones
+            sb.append(nombreA).append(System.getProperty("line.separator"));
+            ;
+            bw.write(sb.toString());
+            listaAlbumes.addLast(nombreA);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    
+    
 
 }

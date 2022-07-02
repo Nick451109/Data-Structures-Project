@@ -5,6 +5,9 @@
 package com.mycompany.controllers;
 
 import Datos.Registro;
+import TDAs.ArrayList;
+import com.mycompany.proyectoed2.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -20,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 public class PaginaInicioController implements Initializable {
 
     @FXML
-    private ComboBox<?> listaAlbumes;
+    private ComboBox<String> listaAlbumes;
     @FXML
     private ComboBox<?> buscarPor;
 
@@ -29,21 +32,27 @@ public class PaginaInicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        // TODO
-    }    
-
-    @FXML
-    private void ingresarAlbum(MouseEvent event) {
-        Registro unico = new Registro();
-        System.out.println("entra-------------------");
-        Registro.cargaListaFotos();
-        System.out.println("Sale--------------------");
-        System.out.println(Registro.getListaFotos().toString());
+        //Registro unico = new Registro();
+        try {
+            ArrayList<String> albumes = Registro.getListaAlbumes();
+            for (int i = 0; i < albumes.size(); i++) {
+                System.out.println("entramos");
+                System.out.println(albumes.get(i));
+                listaAlbumes.getItems().add(albumes.get(i));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
-    private void crearAlbum(MouseEvent event) {
+    private void ingresarAlbum(MouseEvent event) throws IOException {
+            
     }
-    
+
+    @FXML
+    private void crearAlbum(MouseEvent event) throws IOException {
+        App.setRoot("CrearAlbum");
+    }
+
 }
