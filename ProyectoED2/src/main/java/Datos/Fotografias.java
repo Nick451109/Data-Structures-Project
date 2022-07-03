@@ -34,6 +34,7 @@ public class Fotografias {
         this.comentarios = comentarios;
         this.reacciones = reaccion;
         this.fecha = fecha;
+        
 
     }
 

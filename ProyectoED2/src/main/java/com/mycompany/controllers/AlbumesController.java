@@ -82,8 +82,6 @@ public class AlbumesController implements Initializable {
     private void agregarFoto(MouseEvent event) {
 
     }
-   
-
     @FXML
     private void modificarInfo(MouseEvent event) {
     }
