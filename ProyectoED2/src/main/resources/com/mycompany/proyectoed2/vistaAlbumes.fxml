@@ -15,8 +15,7 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
    <children>
       <Label fx:id="Album" layoutX="107.0" layoutY="25.0" prefHeight="18.0" prefWidth="102.0" />
-      <Label layoutX="58.0" layoutY="34.0" text="ALBUM:" />
-      <ComboBox fx:id="cbAlbum" layoutX="115.0" layoutY="30.0" onMouseClicked="#mostrarAlbum" prefWidth="150.0" />
+      <ComboBox id="Seleccionar Album" fx:id="cbAlbum" layoutX="45.0" layoutY="30.0" onMouseClicked="#mostrarAlbum" prefWidth="150.0" promptText="Seleccionar Album" />
       <ScrollPane layoutX="38.0" layoutY="82.0" prefHeight="274.0" prefWidth="413.0">
          <content>
             <FlowPane fx:id="galleria" prefHeight="272.0" prefWidth="410.0">
@@ -65,5 +64,6 @@
          </padding>
       </VBox>
       <Button layoutX="519.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:" />
+      <Button layoutX="209.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#seleccionarAlbum" text="Mostrar" />
    </children>
 </AnchorPane>

@@ -136,7 +136,7 @@ public class VistaAlbumesController implements Initializable {
     
     @FXML
     private void mostrarAlbum(MouseEvent event) {
-        galleria.getChildren().clear();
+      //  galleria.getChildren().clear();
 
         rbLugar.setSelected(false);
         rbPersonas.setSelected(false);
@@ -146,14 +146,14 @@ public class VistaAlbumesController implements Initializable {
         txtBusqueda.setDisable(true);
         llenarCBAlbum();
         vbOpciones.setDisable(false);
-        String opcion = cbAlbum.getValue();
+        /*String opcion = cbAlbum.getValue();
         System.out.print(opcion);
         
         if(opcion == "Todos"){
             mostrarFotos(lFotografiasOficial);
         }else if (opcion=="Ninguno"){
             galleria.getChildren().clear();
-        }
+        }*/
     }
 
     @FXML
@@ -181,6 +181,19 @@ public class VistaAlbumesController implements Initializable {
     private void habilitarBusqueda(MouseEvent event) {
         txtBusqueda.setDisable(false);
         
+    }
+
+    @FXML
+    private void seleccionarAlbum(MouseEvent event) {
+        galleria.getChildren().clear();
+        String opcion = cbAlbum.getValue();
+        System.out.print(opcion);
+        
+        if(opcion == "Todos"){
+            mostrarFotos(lFotografiasOficial);
+        }else if (opcion=="Ninguno"){
+            galleria.getChildren().clear();
+        }
     }
 
 
