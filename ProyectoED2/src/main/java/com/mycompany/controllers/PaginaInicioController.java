@@ -65,7 +65,7 @@ public class PaginaInicioController implements Initializable {
           Stage verAlb = new Stage();
           FXMLLoader loader = new FXMLLoader();
           AnchorPane root = (AnchorPane)loader.load(getClass().getResource("Albumes.fxml").openStream());
-          AlbumesController AlbumesCInst = (AlbumesController)loader.getController();
+          //AlbumesController AlbumesCInst = (AlbumesController)loader.getController();
     }
 
     @FXML

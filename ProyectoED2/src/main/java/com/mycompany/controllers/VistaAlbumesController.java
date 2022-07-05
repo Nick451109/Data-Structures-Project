@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
@@ -37,6 +38,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -114,8 +116,14 @@ public class VistaAlbumesController implements Initializable {
             try {
                 Stage verAlb = new Stage();
                 FXMLLoader loader = new FXMLLoader();
-                AnchorPane root = (AnchorPane) loader.load(getClass().getResource("Albumes.fxml").openStream());
-                AlbumesController AlbumesCInst = (AlbumesController) loader.getController();
+                AnchorPane root = (AnchorPane)loader.load(getClass().getResource("file:./src/main/com/mycompany/proyectoed2/VistaFotos.fxml").openStream());
+                VistaFotosController FotosCInst = (VistaFotosController) loader.getController(); //aqui va el abumes controller
+                FotosCInst.recibeParametros(vistAlbCont, foto, lFotografiasActual);
+                Scene scene = new Scene(root);
+                verAlb.setScene(scene);
+                verAlb.alwaysOnTopProperty();
+                verAlb.initModality(Modality.APPLICATION_MODAL);
+                verAlb.show();
                 //Se inserta lo que va a pasar cuando a cada imagen se le haga clic 
             } catch (IOException ex) {
                 ex.printStackTrace();
