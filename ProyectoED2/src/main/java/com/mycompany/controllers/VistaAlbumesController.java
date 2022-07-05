@@ -211,9 +211,25 @@ public class VistaAlbumesController implements Initializable {
         System.out.print(albumSeleccionado);
         if (albumSeleccionado == "Todos") {
             mostrarFotos(lFotografiasOficial);
+            lFotografiasActual = lFotografiasOficial;
         }else if (albumSeleccionado == "Ninguno") {
             galleria.getChildren().clear();
         }else if (albumSeleccionado ==null){
+            Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
+        }else {
+            DLinkedList <Fotografias> lfotos = new DLinkedList<>();
+            for( int i = 0; i < lFotografiasOficial.size(); i++ ){
+                System.out.print("INGRESO AL FOR");
+                Fotografias foto= lFotografiasOficial.get(i);
+                System.out.print("SELECCIONO EL ALBUM");
+                if(albumSeleccionado.toUpperCase().equals((foto.getAlbum()).toUpperCase())){
+                    System.out.print("INGRESO A LA COMPARACION");
+                //   lfotos.add(i, foto);
+                }
+            }
+            lFotografiasActual=lfotos;
+            mostrarFotos(lFotografiasOficial);
+            
             
         }
     }
