@@ -205,6 +205,7 @@ public class VistaAlbumesController implements Initializable {
 
     @FXML
     private void seleccionarAlbum(MouseEvent event) {
+        //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
         String opcion = cbAlbum.getValue();
         System.out.print(opcion);
