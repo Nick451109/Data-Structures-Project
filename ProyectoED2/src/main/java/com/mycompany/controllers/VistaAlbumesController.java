@@ -5,6 +5,7 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Alerta;
 import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.ArrayList;
@@ -162,17 +163,10 @@ public class VistaAlbumesController implements Initializable {
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
         if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Seleccione un tipo de Busqueda");
-            alert.show();
+            Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
         } else if (tbusqueda.equals("")) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("No se ha ingresado Busqueda");
-            alert.show();
+            Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
+
         }
 
     }
@@ -213,12 +207,14 @@ public class VistaAlbumesController implements Initializable {
     private void MostrarAlbum(MouseEvent event) {
         //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
-        String opcion = cbAlbum.getValue();
-        System.out.print(opcion);
-        if (opcion == "Todos") {
+        String albumSeleccionado = cbAlbum.getValue();
+        System.out.print(albumSeleccionado);
+        if (albumSeleccionado == "Todos") {
             mostrarFotos(lFotografiasOficial);
-        } else if (opcion == "Ninguno") {
+        }else if (albumSeleccionado == "Ninguno") {
             galleria.getChildren().clear();
+        }else if (albumSeleccionado ==null){
+            
         }
     }
 
