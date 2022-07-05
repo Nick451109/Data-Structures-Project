@@ -5,7 +5,10 @@
 package com.mycompany.controllers;
 
 import Datos.Fotografias;
+import Datos.Registro;
 import TDAs.ArrayList;
+import TDAs.DLinkedList;
+import com.mycompany.proyectoed2.App;
 import com.mycompany.util.Util;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +23,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 /**
@@ -29,7 +34,7 @@ import javafx.stage.FileChooser;
  * @author CAELOS JR 2018
  */
  
-public class AgregarFotoController implements Initializable {
+public class AgregarFotoController implements Initializable {    //falta agregar el elemento a lista de imagenes y tambien hay que poner un que la foto slaga antes de mostrar la descripcion.
     
     int idImagen;
     
@@ -41,12 +46,26 @@ public class AgregarFotoController implements Initializable {
     private TextField lblpersonas;
     @FXML
     private TextField lblalbum;
+    @FXML
+    private ComboBox<String> AlbDisp;
+    private DLinkedList<Fotografias> fotos;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fotos = Registro.getListaFotos();
+        try {
+            ArrayList<String> albumes = Registro.getListaAlbumes();
+            for (int i = 0; i < albumes.size(); i++) {
+                System.out.println("entramos");
+                System.out.println(albumes.get(i));
+                AlbDisp.getItems().add(albumes.get(i));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         
         // TODO
     }    
@@ -76,11 +95,13 @@ public class AgregarFotoController implements Initializable {
             personasF.addLast(s);
         }
         LocalDate fecha = LocalDate.now();
-        String album = lblalbum.getText();
+        String album = AlbDisp.getValue();// String album = lblalbum.getText();
         String comentarios = " ";
         int reacciones = 0;
         //String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion
         Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF,fecha,album, comentarios,reacciones);
+        fotos.addLast(f1);
+        Registro.setListaFotos(fotos);
         f1.saveFile("Fotos.txt");
         
         FileChooser fil_chooser = new FileChooser();
@@ -103,12 +124,18 @@ public class AgregarFotoController implements Initializable {
             StandardCopyOption.REPLACE_EXISTING,
             StandardCopyOption.COPY_ATTRIBUTES
         };
+        
         try {
 
                     Files.copy(de, a, options);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+    }
+
+    @FXML
+    private void VentanaAnt(MouseEvent event) throws IOException {
+        App.setRoot("vistaAlbumes");
     }
     
 }

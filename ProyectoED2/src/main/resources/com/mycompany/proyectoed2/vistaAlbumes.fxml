@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
    <children>
       <Label fx:id="Album" layoutX="107.0" layoutY="25.0" prefHeight="18.0" prefWidth="102.0" />
       <ComboBox id="Seleccionar Album" fx:id="cbAlbum" layoutX="45.0" layoutY="30.0" onMouseClicked="#mostrarAlbum" prefWidth="150.0" promptText="Seleccionar Album" />
@@ -65,5 +65,7 @@
       </VBox>
       <Button layoutX="519.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:" />
       <Button layoutX="209.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#seleccionarAlbum" text="Mostrar" />
+      <Button layoutX="475.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#AnadirFotos" text="Añadir Foto" />
+      <Button layoutX="471.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#AnadirAlbum" text="Añadir albúm" />
    </children>
 </AnchorPane>

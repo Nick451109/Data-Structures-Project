@@ -3,3 +3,4 @@
 3|De viajecitop|Guayaquil|nick, juan,  amy |2022-07-01|Viaje centro| |0
 4|pepe|Quito|juan, camila|2022-07-01|Viaje centro| |0
 5|fotos de viaje|Manabi|nick,  arlet,  camila |2022-07-01|Viaje centro| |0
+6|foto bonita |Casa|Carlos Hugo |2022-07-04|PEPE| |0

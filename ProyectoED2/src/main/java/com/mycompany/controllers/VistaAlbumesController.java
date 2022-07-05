@@ -10,11 +10,13 @@ import Datos.Registro;
 import TDAs.ArrayList;
 import TDAs.DLinkedList;
 import com.mycompany.proyectoed2.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,10 +32,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -42,11 +46,10 @@ import javafx.scene.paint.Color;
  */
 public class VistaAlbumesController implements Initializable {
 
-
     @FXML
     private FlowPane galleria;
     private Fotografias fActual;
-    private DLinkedList<Fotografias> lFotografiasActual; 
+    private DLinkedList<Fotografias> lFotografiasActual;
     private DLinkedList<Fotografias> lFotografiasOficial;
     @FXML
     private Label Album;
@@ -68,19 +71,23 @@ public class VistaAlbumesController implements Initializable {
     private VBox vbOpciones;
     @FXML
     private ToggleGroup tgOpcion;
+    VistaAlbumesController vistAlbCont;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lFotografiasOficial= Registro.getListaFotos();
+        vistAlbCont = this;
+        lFotografiasOficial = Registro.getListaFotos();
         galleria.setPadding(new Insets(15, 15, 15, 15));
         galleria.setVgap(30);
         galleria.setHgap(20);
     }
-    private void llenarCBAlbum(){
+
+    private void llenarCBAlbum() {
         try {
+            cbAlbum.getItems().clear();
             ArrayList<String> albumes = Registro.getListaAlbumes();
             cbAlbum.getItems().add("Todos");
             cbAlbum.getItems().add("Ninguno");
@@ -93,50 +100,56 @@ public class VistaAlbumesController implements Initializable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-       
+
     }
 
-     private Pane crearFotoView(Fotografias foto ) {
+    private Pane crearFotoView(Fotografias foto) {
 
         Pane pane = new Pane();
-        /*final Image image = new Image("Imagen.png");
+        final Image image = new Image("file:./src/main/resources/img/" + foto.getiD() + ".jpg", 150, 0, true, false);
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(150);
-        
-        //crear opcion de poner seleecionar en cada imagen
         pane.getChildren().add(imageView);
-
         imageView.setOnMouseClicked(event -> {
-            //Se inserta lo que va a pasar cuando a cada imagen se le haga clic 
-        });*/
+            try {
+                Stage verAlb = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                AnchorPane root = (AnchorPane) loader.load(getClass().getResource("Albumes.fxml").openStream());
+                AlbumesController AlbumesCInst = (AlbumesController) loader.getController();
+                //Se inserta lo que va a pasar cuando a cada imagen se le haga clic 
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         VBox vbox = new VBox();
+        vbox.getChildren().add(pane);
         Label llugar = new Label();
         llugar.setText(foto.getLugar());
         vbox.getChildren().add(llugar);
-        
+
         Label lalbum = new Label();
         lalbum.setText(foto.getAlbum());
         vbox.getChildren().add(lalbum);
-        
-        
+
         Label lpersonas = new Label();
         lpersonas.setText(foto.getPersonas().toString());
         vbox.getChildren().add(lpersonas);
-        
+
         return vbox;
     }
-    private void mostrarFotos(DLinkedList<Fotografias> lFotos){
+
+    private void mostrarFotos(DLinkedList<Fotografias> lFotos) {
         lFotografiasActual = lFotos;
-        for (int i=0; i< lFotos.size(); i++) {
+        for (int i = 0; i < lFotos.size(); i++) {
             Fotografias foto = lFotos.get(i);
             Pane footView = crearFotoView(foto);
             galleria.getChildren().add(footView);
         }
     }
-    
+
     @FXML
     private void mostrarAlbum(MouseEvent event) {
-      //  galleria.getChildren().clear();
+        //  galleria.getChildren().clear();
 
         rbLugar.setSelected(false);
         rbPersonas.setSelected(false);
@@ -160,14 +173,13 @@ public class VistaAlbumesController implements Initializable {
     private void buscar(MouseEvent event) {
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
-        if(!(rbLugar.isSelected()||rbPersonas.isSelected()||rbLugarPersonas.isSelected()||rbDescripcion.isSelected()||rbReacciones.isSelected())){
+        if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Seleccione un tipo de Busqueda");
             alert.show();
-        }
-        else if(tbusqueda.equals("")){
+        } else if (tbusqueda.equals("")) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -180,7 +192,7 @@ public class VistaAlbumesController implements Initializable {
     @FXML
     private void habilitarBusqueda(MouseEvent event) {
         txtBusqueda.setDisable(false);
-        
+
     }
 
     @FXML
@@ -188,13 +200,21 @@ public class VistaAlbumesController implements Initializable {
         galleria.getChildren().clear();
         String opcion = cbAlbum.getValue();
         System.out.print(opcion);
-        
-        if(opcion == "Todos"){
+        if (opcion == "Todos") {
             mostrarFotos(lFotografiasOficial);
-        }else if (opcion=="Ninguno"){
+        } else if (opcion == "Ninguno") {
             galleria.getChildren().clear();
         }
     }
 
+    @FXML
+    private void AnadirFotos(MouseEvent event) throws IOException {
+        App.setRoot("AgregarFoto");
+    }
+
+    @FXML
+    private void AnadirAlbum(MouseEvent event) throws IOException {
+        App.setRoot("CrearAlbum");
+    }
 
 }
