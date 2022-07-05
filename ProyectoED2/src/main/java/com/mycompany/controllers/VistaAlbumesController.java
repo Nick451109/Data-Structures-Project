@@ -116,7 +116,7 @@ public class VistaAlbumesController implements Initializable {
             try {
                 Stage verAlb = new Stage();
                 FXMLLoader loader = new FXMLLoader();
-                AnchorPane root = (AnchorPane)loader.load(getClass().getResource("file:./src/main/com/mycompany/proyectoed2/VistaFotos.fxml").openStream());
+                AnchorPane root = (AnchorPane)loader.load(App.class.getResource("VistaFotos.fxml"));
                 VistaFotosController FotosCInst = (VistaFotosController) loader.getController(); //aqui va el abumes controller
                 FotosCInst.recibeParametros(vistAlbCont, foto, lFotografiasActual);
                 Scene scene = new Scene(root);
