@@ -155,27 +155,7 @@ public class VistaAlbumesController implements Initializable {
         }
     }
 
-    @FXML
-    private void mostrarAlbum(MouseEvent event) {
-        //  galleria.getChildren().clear();
 
-        rbLugar.setSelected(false);
-        rbPersonas.setSelected(false);
-        rbLugarPersonas.setSelected(false);
-        rbDescripcion.setSelected(false);
-        rbReacciones.setSelected(false);
-        txtBusqueda.setDisable(true);
-        llenarCBAlbum();
-        vbOpciones.setDisable(false);
-        /*String opcion = cbAlbum.getValue();
-        System.out.print(opcion);
-        
-        if(opcion == "Todos"){
-            mostrarFotos(lFotografiasOficial);
-        }else if (opcion=="Ninguno"){
-            galleria.getChildren().clear();
-        }*/
-    }
 
     @FXML
     private void buscar(MouseEvent event) {
@@ -204,7 +184,33 @@ public class VistaAlbumesController implements Initializable {
     }
 
     @FXML
-    private void seleccionarAlbum(MouseEvent event) {
+    private void AnadirFotos(MouseEvent event) throws IOException {
+        App.setRoot("AgregarFoto");
+    }
+
+    @FXML
+    private void AnadirAlbum(MouseEvent event) throws IOException {
+        App.setRoot("CrearAlbum");
+    }
+
+
+
+    @FXML//Selecciona el album a mostrar y llena el combo box
+    private void SeleccionarAlbum(MouseEvent event) {
+                //  galleria.getChildren().clear();
+        rbLugar.setSelected(false);
+        rbPersonas.setSelected(false);
+        rbLugarPersonas.setSelected(false);
+        rbDescripcion.setSelected(false);
+        rbReacciones.setSelected(false);
+        txtBusqueda.setDisable(true);
+        llenarCBAlbum();
+        vbOpciones.setDisable(false);
+
+    }
+
+    @FXML //Mustra el album seleccionado en el cbAlbum
+    private void MostrarAlbum(MouseEvent event) {
         //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
         String opcion = cbAlbum.getValue();
@@ -214,16 +220,6 @@ public class VistaAlbumesController implements Initializable {
         } else if (opcion == "Ninguno") {
             galleria.getChildren().clear();
         }
-    }
-
-    @FXML
-    private void AnadirFotos(MouseEvent event) throws IOException {
-        App.setRoot("AgregarFoto");
-    }
-
-    @FXML
-    private void AnadirAlbum(MouseEvent event) throws IOException {
-        App.setRoot("CrearAlbum");
     }
 
 }
