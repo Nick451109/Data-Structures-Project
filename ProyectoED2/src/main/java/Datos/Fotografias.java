@@ -9,12 +9,13 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  *
  * @author CAELOS JR 2018
  */
-public class Fotografias {
+public class Fotografias implements Comparator<Fotografias>{
 
     private int iD;
     private String descripcion;
@@ -122,5 +123,10 @@ public class Fotografias {
             System.out.println(e);
         }
 
+    }
+
+    @Override
+    public int compare(Fotografias o1, Fotografias o2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
