@@ -6,6 +6,7 @@
 package com.mycompany.controllers;
 
 import Datos.Alerta;
+import Datos.Filtros;
 import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.ArrayList;
@@ -157,10 +158,14 @@ public class VistaAlbumesController implements Initializable {
 
     private void mostrarFotos(DLinkedList<Fotografias> lFotos) {
         lFotografiasActual = lFotos;
-        for (int i = 0; i < lFotos.size(); i++) {
+        if(lFotos.isEmpty()){
+            galleria.getChildren().clear();
+        }else {
+            for (int i = 0; i < lFotos.size(); i++) {
             Fotografias foto = lFotos.get(i);
             Pane footView = crearFotoView(foto);
             galleria.getChildren().add(footView);
+            }
         }
     }
 
@@ -170,13 +175,22 @@ public class VistaAlbumesController implements Initializable {
     private void buscar(MouseEvent event) {
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
+        DLinkedList<Fotografias> lFiltrada = new DLinkedList<>();
         if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
             Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
-        } else if (tbusqueda.equals("")) {
+        }else if (tbusqueda.equals("")) {
             Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
-
-        }
-
+        }else if (  cbAlbum.getValue() == null || cbAlbum.getValue()== "Ninguno"){
+            Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
+        }else {
+            if(rbLugar.isSelected()){
+                lFiltrada = Filtros.filtrarLugar(tbusqueda, lFotografiasActual);
+                mostrarFotos(lFiltrada);
+            }
+         //   else if(rbPersonas )
+        }            
+        
+        
     }
 
     @FXML
@@ -213,6 +227,7 @@ public class VistaAlbumesController implements Initializable {
 
     @FXML //Mustra el album seleccionado en el cbAlbum
     private void MostrarAlbum(MouseEvent event) {
+        lFotografiasOficial = Registro.getListaFotos();
         //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
         String albumSeleccionado = cbAlbum.getValue();
@@ -227,16 +242,13 @@ public class VistaAlbumesController implements Initializable {
         }else {
             DLinkedList <Fotografias> lfotos = new DLinkedList<>();
             for( int i = 0; i < lFotografiasOficial.size(); i++ ){
-                System.out.print("INGRESO AL FOR");
                 Fotografias foto= lFotografiasOficial.get(i);
-                System.out.print("SELECCIONO EL ALBUM");
                 if(albumSeleccionado.toUpperCase().equals((foto.getAlbum()).toUpperCase())){
-                    System.out.print("INGRESO A LA COMPARACION");
-                //   lfotos.add(i, foto);
+                   lfotos.addLast(foto);
                 }
             }
             lFotografiasActual=lfotos;
-            mostrarFotos(lFotografiasOficial);
+            mostrarFotos(lFotografiasActual);
             
             
         }
