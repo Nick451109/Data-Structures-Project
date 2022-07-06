@@ -74,6 +74,7 @@ public class VistaAlbumesController implements Initializable {
     private VBox vbOpciones;
     @FXML
     private ToggleGroup tgOpcion;
+    
     VistaAlbumesController vistAlbCont;
 
     /**
@@ -115,16 +116,23 @@ public class VistaAlbumesController implements Initializable {
         pane.getChildren().add(imageView);
         imageView.setOnMouseClicked(event -> {
             try {
-                Stage verAlb = new Stage();
-                FXMLLoader loader = new FXMLLoader();
-                AnchorPane root = (AnchorPane)loader.load(App.class.getResource("VistaFotos.fxml"));
-                VistaFotosController FotosCInst = (VistaFotosController) loader.getController(); //aqui va el abumes controller
-                FotosCInst.recibeParametros(vistAlbCont, foto, lFotografiasActual);
-                Scene scene = new Scene(root);
-                verAlb.setScene(scene);
-                verAlb.alwaysOnTopProperty();
-                verAlb.initModality(Modality.APPLICATION_MODAL);
-                verAlb.show();
+                Registro.setListaFotosActual(lFotografiasActual);
+                Registro.setFoto(foto);
+                App.setRoot("VistaFotos");
+                //Stage verAlb = new Stage();
+                //FXMLLoader loader = new FXMLLoader();
+                //AnchorPane root = (AnchorPane)loader.load(App.class.getResource("VistaFotos.fxml"));
+                //VistaFotosController FotosCInst = (VistaFotosController)loader.getController(); //aqui va el abumes controller
+                //System.out.println(foto);
+                //System.out.println(lFotografiasActual);
+                //System.out.println(vistAlbCont);
+                //System.out.println(FotosCInst);
+                //FotosCInst.recibeParametros(vistAlbCont, foto, lFotografiasActual);
+                //Scene scene = new Scene(root);
+                //verAlb.setScene(scene);
+                //verAlb.alwaysOnTopProperty();
+                //verAlb.initModality(Modality.APPLICATION_MODAL);
+                //verAlb.show();
                 //Se inserta lo que va a pasar cuando a cada imagen se le haga clic 
             } catch (IOException ex) {
                 ex.printStackTrace();

@@ -21,6 +21,24 @@ public class Registro {
 
     private static DLinkedList<Fotografias> listaFotos = new DLinkedList<>();
     private static ArrayList<String> listaAlbumes = new ArrayList<>();
+    private static DLinkedList<Fotografias> listaFotosActual = new DLinkedList<>();
+    private static Fotografias foto = new Fotografias(0,null,null,null,null,null,null,null);
+
+    public static void setFoto(Fotografias foto) {
+        Registro.foto = foto;
+    }
+
+    public static Fotografias getFoto() {
+        return foto;
+    }
+
+    public static void setListaFotosActual(DLinkedList<Fotografias> listaFotosActual) {
+        Registro.listaFotosActual = listaFotosActual;
+    }
+
+    public static DLinkedList<Fotografias> getListaFotosActual() {
+        return listaFotosActual;
+    }
 
     public static void setListaFotos(DLinkedList<Fotografias> listaFotos) {
         Registro.listaFotos = listaFotos;

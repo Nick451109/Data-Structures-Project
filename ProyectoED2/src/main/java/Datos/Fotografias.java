@@ -38,6 +38,14 @@ public class Fotografias {
 
     }
 
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
     public int getiD() {
         return iD;
     }

@@ -4,3 +4,4 @@
 4|pepe|Quito|juan, camila|2022-07-01|Viaje centro| |0
 5|fotos de viaje|Manabi|nick,  arlet,  camila |2022-07-01|Viaje centro| |0
 6|foto bonita |Casa|Carlos Hugo |2022-07-04|PEPE| |0
+7|bonito |casa|Carlos |2022-07-05|svewvcw| |0
