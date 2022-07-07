@@ -7,6 +7,8 @@ package com.mycompany.controllers;
 import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.DLinkedList;
+import com.mycompany.proyectoed2.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ import javafx.scene.layout.Pane;
  * @author CAELOS JR 2018
  */
 public class VistaFotosController implements Initializable {
+
     //VistaAlbumesController vistAlb;
     private Fotografias fotoAct;
     private DLinkedList<Fotografias> lFotografiasActual;
@@ -55,26 +58,36 @@ public class VistaFotosController implements Initializable {
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(150);
         imgPane.getChildren().add(imageView);
-        
-        // TODO
-    }    
-    
-    //public void recibeParametros(VistaAlbumesController vistAlb2,Fotografias f,DLinkedList<Fotografias> listaFilt){
-        //System.out.println("hola");
-        //vistAlb = vistAlb2;
-        //lFotografiasActual = listaFilt;
-    //}
 
+        // TODO
+    }
+
+    //public void recibeParametros(VistaAlbumesController vistAlb2,Fotografias f,DLinkedList<Fotografias> listaFilt){
+    //System.out.println("hola");
+    //vistAlb = vistAlb2;
+    //lFotografiasActual = listaFilt;
+    //}
     @FXML
     private void prevFoto(MouseEvent event) {
+        Fotografias nueva = lFotografiasActual.getPriorD(fotoAct);
+        fotoAct = nueva;
+        Registro.setFoto(fotoAct);
+        MostrarFoto(fotoAct);
     }
 
     @FXML
     private void sigFoto(MouseEvent event) {
+        Fotografias nueva = lFotografiasActual.getNextD(fotoAct);
+        fotoAct = nueva;
+        Registro.setFoto(fotoAct);
+        MostrarFoto(fotoAct);
+
     }
 
     @FXML
-    private void modFoto(MouseEvent event) {
+    private void modFoto(MouseEvent event) throws IOException {
+        Registro.setFoto(fotoAct);
+        App.setRoot("VistaModificar");
     }
 
     @FXML
@@ -82,6 +95,20 @@ public class VistaFotosController implements Initializable {
     }
 
     @FXML
-    private void RegresarVentana(MouseEvent event) {
+    private void RegresarVentana(MouseEvent event) throws IOException {
+        App.setRoot("VistaAlbumes");
+    }
+
+    public void MostrarFoto(Fotografias f) {
+        imgPane.getChildren().clear();
+        nameAlb.setText(fotoAct.getAlbum());
+        decripLbl.setText(fotoAct.getDescripcion());
+        decripLgr.setText(fotoAct.getLugar());
+        descripPers.setText(fotoAct.getPersonas().toString());
+        descripFech.setText(fotoAct.getFecha().toString());
+        final Image image = new Image("file:./src/main/resources/img/" + fotoAct.getiD() + ".jpg", 200, 200, true, false);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(150);
+        imgPane.getChildren().add(imageView);
     }
 }

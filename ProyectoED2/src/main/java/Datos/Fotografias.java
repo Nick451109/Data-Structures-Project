@@ -15,7 +15,7 @@ import java.util.Comparator;
  *
  * @author CAELOS JR 2018
  */
-public class Fotografias implements Comparator<Fotografias>{
+public class Fotografias implements Comparator<Fotografias>, Comparable<Fotografias>{
 
     private int iD;
     private String descripcion;
@@ -135,6 +135,12 @@ public class Fotografias implements Comparator<Fotografias>{
 
     @Override
     public int compare(Fotografias o1, Fotografias o2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return o1.getiD() - o2.getiD();
     }
+
+    @Override
+    public int compareTo(Fotografias o) {
+        return this.getiD() - o.getiD();
+    }
+
 }

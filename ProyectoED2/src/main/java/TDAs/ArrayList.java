@@ -50,7 +50,11 @@ public class ArrayList<E> implements List<E>{
     public String toString() {
         String result = "";
         for (int i = 0; i < effectiveSize; i++) {
-            result += elements[i].toString() + " ";
+            if(i< effectiveSize -1){
+            result += elements[i].toString() + ",";
+            }else{
+                result += elements[i].toString();
+            }
         }
         return result;
     }
