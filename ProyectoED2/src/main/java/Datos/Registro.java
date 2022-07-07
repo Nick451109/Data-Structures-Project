@@ -61,7 +61,8 @@ public class Registro {
     /*public Registro(DLinkedList<Fotografias> listaFotos, ArrayList<String> listaAlbumes) {
         this.listaFotos = listaFotos;
      */
-
+    
+    //metodo para cargar fotos a la variable listaFotos
     public static void cargaListaFotos() {
         DLinkedList<Fotografias> lFotos = new DLinkedList<>();
         try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {

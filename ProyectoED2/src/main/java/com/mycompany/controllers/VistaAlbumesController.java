@@ -53,8 +53,8 @@ public class VistaAlbumesController implements Initializable {
     @FXML
     private FlowPane galleria;
     private Fotografias fActual;
-    private DLinkedList<Fotografias> lFotografiasActual;
-    private DLinkedList<Fotografias> lFotografiasOficial;
+    private DLinkedList<Fotografias> lFotografiasActual; //linkedlist con fotos pertenecientes a algun album especifico
+    private DLinkedList<Fotografias> lFotografiasOficial; //linkedlist con todas las fotos
     @FXML
     private Label Album;
     @FXML
@@ -108,14 +108,16 @@ public class VistaAlbumesController implements Initializable {
 
     }
 
-    private Pane crearFotoView(Fotografias foto) {
+    private Pane crearFotoView(Fotografias foto) { 
+        
+        //metodo para mostrar fotos habiendo seleccionado un album e iterado una foto de ese album
 
-        Pane pane = new Pane();
-        final Image image = new Image("file:./src/main/resources/img/" + foto.getiD() + ".jpg", 150, 0, true, false);
+        Pane pane = new Pane(); //se crea el pane con la imagen
+        final Image image = new Image("file:./src/main/resources/img/" + foto.getiD() + ".jpg", 150, 0, true, false); 
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(150);
         pane.getChildren().add(imageView);
-        imageView.setOnMouseClicked(event -> {
+        imageView.setOnMouseClicked(event -> { //cuando se clickea se pasa a la vistafotos
             try {
                 Registro.setListaFotosActual(lFotografiasActual);
                 Registro.setFoto(foto);
@@ -139,6 +141,8 @@ public class VistaAlbumesController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        
+        //muestra descripcion, lugar y personas debajo de la foto 
         VBox vbox = new VBox();
         vbox.getChildren().add(pane);
         Label llugar = new Label();
@@ -156,13 +160,15 @@ public class VistaAlbumesController implements Initializable {
         return vbox;
     }
 
-    private void mostrarFotos(DLinkedList<Fotografias> lFotos) {
+    private void mostrarFotos(DLinkedList<Fotografias> lFotos) { //recibe una linkedlist con fotos pertenecientes a algun album especifico EJ: Centro
         lFotografiasActual = lFotos;
         if(lFotos.isEmpty()){
             galleria.getChildren().clear();
         }else {
             for (int i = 0; i < lFotos.size(); i++) {
             Fotografias foto = lFotos.get(i);
+            
+            //mostrar fotos en el pane
             Pane footView = crearFotoView(foto);
             galleria.getChildren().add(footView);
             }
@@ -227,12 +233,13 @@ public class VistaAlbumesController implements Initializable {
 
     @FXML //Mustra el album seleccionado en el cbAlbum
     private void MostrarAlbum(MouseEvent event) {
-        lFotografiasOficial = Registro.getListaFotos();
+        lFotografiasOficial = Registro.getListaFotos();//linkedlist de fotografias
         //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
-        String albumSeleccionado = cbAlbum.getValue();
+        String albumSeleccionado = cbAlbum.getValue();//album que elegi en el combobox
         System.out.print(albumSeleccionado);
         if (albumSeleccionado == "Todos") {
+            
             mostrarFotos(lFotografiasOficial);
             lFotografiasActual = lFotografiasOficial;
         }else if (albumSeleccionado == "Ninguno") {
@@ -240,11 +247,14 @@ public class VistaAlbumesController implements Initializable {
         }else if (albumSeleccionado ==null){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
+            
+            // cuando se selecciona un album creado
             DLinkedList <Fotografias> lfotos = new DLinkedList<>();
             for( int i = 0; i < lFotografiasOficial.size(); i++ ){
                 Fotografias foto= lFotografiasOficial.get(i);
                 if(albumSeleccionado.toUpperCase().equals((foto.getAlbum()).toUpperCase())){
-                   lfotos.addLast(foto);
+                    //si el album que seleccione en el combobox es igual a el album de la foto iterada, se la añade
+                   lfotos.addLast(foto); //linkedlist con las fotos que corresponden al album
                 }
             }
             lFotografiasActual=lfotos;

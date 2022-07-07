@@ -8,11 +8,16 @@ import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.DLinkedList;
 import com.mycompany.proyectoed2.App;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,6 +46,8 @@ public class VistaFotosController implements Initializable {
     private Label descripPers;
     @FXML
     private Label descripFech;
+    @FXML
+    private Button btnEliminar;
 
     /**
      * Initializes the controller class.
@@ -91,7 +98,16 @@ public class VistaFotosController implements Initializable {
     }
 
     @FXML
-    private void elimFoto(MouseEvent event) {
+    private void elimFoto(MouseEvent event) throws IOException {
+        //obtener la foto actual
+        //obtener su ruta
+        //String ruta = "file:./src/main/resources/img/" + fotoAct.getiD() + ".jpg";
+        String ruta = "src/main/resources/img/" + fotoAct.getiD() + ".jpg";
+        Path rutaconv = Paths.get(ruta);
+
+        //aplicar el metodo de eliminar el elemento de esa ruta
+        Files.delete(rutaconv);
+        //aplicar metodo para remover registro en el txt fotos por el numero de id de la foto
     }
 
     @FXML
