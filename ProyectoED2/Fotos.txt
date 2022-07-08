@@ -1,10 +1,2 @@
 1|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 2|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
-3|De viajecitop|Guayaquil|nick, juan,  amy |2022-07-01|Viaje centro| |0
-4|pepe|Quito|juan, camila|2022-07-01|Viaje centro| |0
-5|fotos de viaje|Manabi|nick,  arlet,  camila |2022-07-01|Viaje centro| |0
-6|foto bonita |Casa|Carlos Hugo |2022-07-04|PEPE| |0
-7|bonito |casa|Carlos |2022-07-05|svewvcw| |0
-8|gy|guayaquil|nick  juan |2022-07-06|Centro| |0
-9|un man|guayaquil|juan |2022-07-06|Centro| |0
-10|una man|guayaquil|juana |2022-07-06|Centro| |0

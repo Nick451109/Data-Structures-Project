@@ -20,7 +20,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("AgregarFoto"), 640, 480);
         Registro.cargaListaFotos();
+        System.out.println("CARGALISTAAAAAAAAAAAAAAAAAAAAAAAA");
         Registro.cargaListaALbum();
+        System.out.println("cargaalbum");
         scene = new Scene(loadFXML("vistaAlbumes"), 640, 480);
         stage.setScene(scene);
         stage.show();

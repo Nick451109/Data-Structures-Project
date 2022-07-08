@@ -112,6 +112,8 @@ public class Fotografias implements Comparator<Fotografias>, Comparable<Fotograf
     }
 
     @SuppressWarnings("empty-statement")
+    
+    
     public void saveFile(String nomfile) {
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
@@ -124,6 +126,27 @@ public class Fotografias implements Comparator<Fotografias>, Comparable<Fotograf
             sb.append(this.album).append("|");
             sb.append(this.comentarios).append("|");
             sb.append(this.reacciones).append(System.getProperty("line.separator"));
+            ;;
+
+            bw.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
+        //metodo NICK
+        public static void saveFile(String nomfile, Fotografias foto) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
+            //id, descripcion, lugar, personas,fecha,album, comentarios,reacciones
+            sb.append(foto.iD).append("|");
+            sb.append(foto.descripcion).append("|");
+            sb.append(foto.lugar).append("|");
+            sb.append(foto.personas.toString()).append("|");
+            sb.append(foto.fecha).append("|");
+            sb.append(foto.album).append("|");
+            sb.append(foto.comentarios).append("|");
+            sb.append(foto.reacciones).append(System.getProperty("line.separator"));
             ;;
 
             bw.write(sb.toString());

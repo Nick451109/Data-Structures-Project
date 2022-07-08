@@ -100,9 +100,10 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         int reacciones = 0;
         //String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion
         Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF,fecha,album, comentarios,reacciones);
+        
         fotos.addLast(f1);
         Registro.setListaFotos(fotos);
-        f1.saveFile("Fotos.txt");
+        Fotografias.saveFile("Fotos.txt",f1);
         
         FileChooser fil_chooser = new FileChooser();
         fil_chooser.setInitialDirectory(new File(System.getProperty("user.home") + "\\Pictures")); //ruta predeterminada

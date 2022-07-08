@@ -94,7 +94,7 @@ public class Registro {
                 lFotos.addLast(m);
                 System.out.println("se añade a la primera");
                 listaFotos=lFotos;
-                System.out.println("hola--------------------------------------------------");
+                System.out.println("hola3--------------------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("hay error--------------------------***************");

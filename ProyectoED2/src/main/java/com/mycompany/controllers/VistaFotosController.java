@@ -14,6 +14,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ import javafx.scene.layout.Pane;
  *
  * @author CAELOS JR 2018
  */
-public class VistaFotosController implements Initializable {
+public class VistaFotosController implements Initializable{
 
     //VistaAlbumesController vistAlb;
     private Fotografias fotoAct;
@@ -99,15 +100,38 @@ public class VistaFotosController implements Initializable {
 
     @FXML
     private void elimFoto(MouseEvent event) throws IOException {
+        DLinkedList<Fotografias> listaFotosTemporal= new DLinkedList<>();
         //obtener la foto actual
         //obtener su ruta
-        //String ruta = "file:./src/main/resources/img/" + fotoAct.getiD() + ".jpg";
         String ruta = "src/main/resources/img/" + fotoAct.getiD() + ".jpg";
         Path rutaconv = Paths.get(ruta);
-
         //aplicar el metodo de eliminar el elemento de esa ruta
         Files.delete(rutaconv);
-        //aplicar metodo para remover registro en el txt fotos por el numero de id de la foto
+        fotoAct = Registro.getFoto(); //foto actual
+
+        
+        for (int i = 0; i < lFotografiasActual.size(); i++) {
+            Fotografias foto = lFotografiasActual.get(i); //obtengo foto por foto de la linkedlist
+            if(foto != fotoAct){ //comparar la foto actual con la foto iterada y omitirla
+                //listaFotosTemporal.addLast(foto);
+                listaFotosTemporal.addLast(foto);   
+            }
+            //borrar txt Fotos
+            /*String rutatxt = "Fotos.txt";
+            Path rutatxtconv = Paths.get(rutatxt);
+            Files.delete(rutatxtconv);*/
+            
+            //generar un nuevo txt
+ 
+        }
+        
+        for (int j = 0; j < listaFotosTemporal.size(); j++) {
+                Fotografias nueva = listaFotosTemporal.getNextD(fotoAct);
+                System.out.println("entro getnext<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                Fotografias.saveFile("Fotostemp.txt", nueva);
+                System.out.println("creo archivo termp<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            }
+         
     }
 
     @FXML
@@ -127,4 +151,6 @@ public class VistaFotosController implements Initializable {
         imageView.setFitWidth(150);
         imgPane.getChildren().add(imageView);
     }
+
+
 }
