@@ -4,3 +4,4 @@
 4|hola|hola|hola|2022-07-08|centro| |05|pepe|pepe|pepe|2022-07-08|centro| |0
 5|pepe|pepe|pepe|2022-07-09|centro| |0
 6|guapa|guapa|juan|2022-07-09|centro| |0
+7|lola|lola|lolita|2022-07-09|lola| |0

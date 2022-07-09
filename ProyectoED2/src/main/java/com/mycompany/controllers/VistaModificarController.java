@@ -68,7 +68,7 @@ public class VistaModificarController implements Initializable { //agregar la la
     @FXML
     private void guardarCambios(MouseEvent event) throws IOException {
         String[] nueva = personasCambio.getText().split(",");
-        ArrayList<String> nuevaList = null;
+        ArrayList<String> nuevaList = new ArrayList<>();
         for(String s: nueva){
             nuevaList.addLast(s);
         }
