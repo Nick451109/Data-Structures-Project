@@ -66,7 +66,7 @@ public class VistaModificarController implements Initializable { //agregar la la
     }
 
     @FXML
-    private void guardarCambios(MouseEvent event) {
+    private void guardarCambios(MouseEvent event) throws IOException {
         String[] nueva = personasCambio.getText().split(",");
         ArrayList<String> nuevaList = null;
         for(String s: nueva){
@@ -78,6 +78,7 @@ public class VistaModificarController implements Initializable { //agregar la la
         Integer pos = actual.find(fotoAct);
         actual.set(pos, fotoAct);
         Registro.setListaFotos(actual);
+        App.setRoot("VistaFotos");
     }
     
 }

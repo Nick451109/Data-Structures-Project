@@ -40,5 +40,12 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+    
+    @Override
+    public void stop(){
+    System.out.println("Stage is closing");
+    // Save file
+}
+
 
 }

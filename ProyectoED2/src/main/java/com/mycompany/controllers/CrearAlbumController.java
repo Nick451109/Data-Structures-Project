@@ -40,12 +40,12 @@ public class CrearAlbumController implements Initializable {
         String nombreA = nombreAlbum.getText().trim();
         Registro.crearAlbum(nombreA);
         System.out.println(Registro.getListaAlbumes());
-        App.setRoot("PaginaInicio");
+        App.setRoot("vistaAlbumes");
     }
 
     @FXML
     private void paginaAnterior(MouseEvent event) throws IOException {
-        App.setRoot("PaginaInicio");
+        App.setRoot("vistaAlbumes");
     }
     
 }

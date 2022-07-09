@@ -82,7 +82,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
     }
 
     @FXML
-    private void seleccionarFoto(ActionEvent event) {
+    private void seleccionarFoto(ActionEvent event) throws IOException {
         
         int id = Util.nextID("Fotos.txt");
         idImagen = id;
@@ -132,6 +132,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+        App.setRoot("vistaAlbumes");
     }
 
     @FXML
