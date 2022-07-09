@@ -264,4 +264,9 @@ public class VistaAlbumesController implements Initializable {
         }
     }
 
+    @FXML
+    private void eliminarAlbum(MouseEvent event) throws IOException {
+        App.setRoot("EliminarAlbum");
+    }
+
 }
