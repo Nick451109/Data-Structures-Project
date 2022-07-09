@@ -252,7 +252,7 @@ public class VistaAlbumesController implements Initializable {
             DLinkedList <Fotografias> lfotos = new DLinkedList<>();
             for( int i = 0; i < lFotografiasOficial.size(); i++ ){
                 Fotografias foto= lFotografiasOficial.get(i);
-                if(albumSeleccionado.toUpperCase().equals((foto.getAlbum()).toUpperCase())){
+                if(albumSeleccionado.equals((foto.getAlbum()))){
                     //si el album que seleccione en el combobox es igual a el album de la foto iterada, se la añade
                    lfotos.addLast(foto); //linkedlist con las fotos que corresponden al album
                 }
