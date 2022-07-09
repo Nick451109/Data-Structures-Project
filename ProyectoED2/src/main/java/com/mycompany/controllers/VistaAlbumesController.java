@@ -190,6 +190,7 @@ public class VistaAlbumesController implements Initializable {
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
             if(rbLugar.isSelected()){
+                
                 lFiltrada = Filtros.filtrarLugar(tbusqueda, lFotografiasActual);
                 mostrarFotos(lFiltrada);
             }
