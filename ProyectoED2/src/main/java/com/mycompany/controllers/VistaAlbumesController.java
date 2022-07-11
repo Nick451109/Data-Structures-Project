@@ -170,12 +170,15 @@ public class VistaAlbumesController implements Initializable {
         Label lpersonas = new Label();
         lpersonas.setText(foto.getPersonas().toString());
         vbox.getChildren().add(lpersonas);
-
+        
+        Label lDescripcion = new Label();
+        lDescripcion.setText(foto.getDescripcion().toString());
+        vbox.getChildren().add(lDescripcion);
         return vbox;
     }
 
     private void mostrarFotos(DLinkedList<Fotografias> lFotos) { //recibe una linkedlist con fotos pertenecientes a algun album especifico EJ: Centro
-        lFotografiasActual = lFotos;
+      //  lFotografiasActual = lFotos;
         if(lFotos.isEmpty()){
             galleria.getChildren().clear();
         }else {
@@ -198,7 +201,7 @@ public class VistaAlbumesController implements Initializable {
         DLinkedList<Fotografias> lFiltrada = new DLinkedList<>();
         if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
             Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
-        }else if (tbusqueda.equals("")&&!rbLugarPersonas.isSelected()) {
+        }else if ((tbusqueda.equals(""))||(txtLugar.equals("")||txtPersonas.equals(""))) {
             Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
         }else if (  cbAlbum.getValue() == null || cbAlbum.getValue()== "Ninguno"){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
@@ -217,14 +220,26 @@ public class VistaAlbumesController implements Initializable {
                 lLugares= filtrarLugar(txtLugar.getText());
                 DLinkedList<Fotografias> lPersonas  = new DLinkedList<>(); 
                 lPersonas = filtrarPersonas(txtPersonas.getText());
+                
                 for(int i=0;i<lLugares.size();i++){
                     Fotografias foto = lLugares.get(i);
                     if(!(lPersonas.find(foto)==null)){
                         lFiltrada.addLast(foto);
                     }
-                }mostrarFotos(lFiltrada);
+                }lFotografiasActual=lFiltrada;
+                mostrarFotos(lFotografiasActual);
 
-            }               
+            }else if(rbDescripcion.isSelected()){
+                for(int i=0; i<lFotografiasActual.size();i++){
+                    Fotografias foto= lFotografiasActual.get(i);
+                    String descripcion=foto.getDescripcion();
+                    if(descripcion.contains(tbusqueda)){
+                        lFiltrada.addLast(foto);
+                    }
+                    
+                }System.out.print(lFotografiasActual);
+                mostrarFotos(lFiltrada); 
+            }                
         }      
     }
     public DLinkedList<Fotografias> filtrarLugar(String tbusqueda){
@@ -290,7 +305,7 @@ public class VistaAlbumesController implements Initializable {
         txtBusqueda.setDisable(false);
         if(rbPersonas.isSelected()){
             Alerta.crearAlerta("Informacion", "Separar las personas por comas");  
-        }else if(rbPersonas.isSelected()||rbLugarPersonas.isSelected()){
+        }else if(rbLugarPersonas.isSelected()){
             txtPersonas.setVisible(true);
             txtLugar.setVisible(true);
             lblPersonas.setVisible(true);
@@ -298,6 +313,12 @@ public class VistaAlbumesController implements Initializable {
             txtBusqueda.setVisible(false);
             Alerta.crearAlerta("Informacion", "Separar las personas por comas");
 
+        }else if(!rbLugarPersonas.isSelected()){
+            txtPersonas.setVisible(false);
+            txtLugar.setVisible(false);
+            lblPersonas.setVisible(false);
+            lblLugar.setVisible(false);
+            txtBusqueda.setVisible(true);
         }
     }
 
