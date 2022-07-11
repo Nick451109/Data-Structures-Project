@@ -5,3 +5,6 @@
 5|pepe|pepe|pepe|2022-07-09|centro| |0
 6|guapa|guapa|juan|2022-07-09|centro| |0
 7|lola|lola|lolita|2022-07-09|lola| |0
+8|es una rpueba|prueba|test|2022-07-09|prueba| |0
+9|es una rpueba|prueba|test|2022-07-09|prueba| |0
+10|probando|probando|probando|2022-07-09|prueba| |0

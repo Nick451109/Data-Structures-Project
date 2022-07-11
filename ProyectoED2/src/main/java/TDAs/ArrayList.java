@@ -122,7 +122,7 @@ public class ArrayList<E> implements List<E>{
     @Override
     public void add(int index, E element) throws Exception {
         if (isEmpty()) {
-            throw new Exception("No existe la posicion");
+            throw new IndexOutOfBoundsException("No existe el indice");
             //System.out.println("No hay elementos a borrar");
             //return null;
         } else if (index >= effectiveSize || index < 0) {
@@ -138,9 +138,9 @@ public class ArrayList<E> implements List<E>{
     }
 
     @Override
-    public E remove(int index) throws Exception {
+    public E remove(int index) {
         if (isEmpty()) {
-            throw new Exception("no hay elementos a remover");
+            throw new IndexOutOfBoundsException("No existe el indice");
         } else if (index >= effectiveSize  || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Esta fuera del indice");
         }
@@ -154,9 +154,9 @@ public class ArrayList<E> implements List<E>{
     
 
     @Override
-    public E get(int index) throws Exception {
+    public E get(int index) {
         if (isEmpty()) {
-            throw new Exception("no hay elementos a encontrar");
+            throw new IndexOutOfBoundsException("No existe el indice");
         } else if (index >= effectiveSize  || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Esta fuera del indice");
         }

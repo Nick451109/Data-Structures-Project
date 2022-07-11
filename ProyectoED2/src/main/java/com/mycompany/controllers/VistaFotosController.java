@@ -100,7 +100,7 @@ public class VistaFotosController implements Initializable{
 
     @FXML
     private void elimFoto(MouseEvent event) throws IOException {
-        DLinkedList<Fotografias> listaFotosTemporal= new DLinkedList<>();
+        DLinkedList<Fotografias> l1 = Registro.getListaFotos();
         //obtener la foto actual
         //obtener su ruta
         String ruta = "src/main/resources/img/" + fotoAct.getiD() + ".jpg";
@@ -108,29 +108,19 @@ public class VistaFotosController implements Initializable{
         //aplicar el metodo de eliminar el elemento de esa ruta
         Files.delete(rutaconv);
         fotoAct = Registro.getFoto(); //foto actual
-
+        int indice = l1.find(fotoAct);
+        l1.remove(indice);
         
-        for (int i = 0; i < lFotografiasActual.size(); i++) {
-            Fotografias foto = lFotografiasActual.get(i); //obtengo foto por foto de la linkedlist
-            if(foto != fotoAct){ //comparar la foto actual con la foto iterada y omitirla
-                //listaFotosTemporal.addLast(foto);
-                listaFotosTemporal.addLast(foto);   
-            }
-            //borrar txt Fotos
-            /*String rutatxt = "Fotos.txt";
-            Path rutatxtconv = Paths.get(rutatxt);
-            Files.delete(rutatxtconv);*/
-            
-            //generar un nuevo txt
- 
+        Fotografias.clearFile(); 
+        
+        for (int i = 0; i < l1.size(); i++) {
+            Fotografias nueva = l1.get(i);
+            Fotografias.saveFile("Fotos.txt", nueva);
         }
         
-        for (int j = 0; j < listaFotosTemporal.size(); j++) {
-                Fotografias nueva = listaFotosTemporal.getNextD(fotoAct);
-                System.out.println("entro getnext<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                Fotografias.saveFile("Fotostemp.txt", nueva);
-                System.out.println("creo archivo termp<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            }
+         //hacer que cuando se elimine, regrese a la vista principal
+         App.setRoot("vistaAlbumes");
+         
          
     }
 
