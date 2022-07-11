@@ -1,6 +1,8 @@
 package com.mycompany.proyectoed2;
 
+import Datos.Fotografias;
 import Datos.Registro;
+import TDAs.DLinkedList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,7 +44,16 @@ public class App extends Application {
     }
     
     @Override
-    public void stop(){
+    public void stop() throws IOException{
+        Fotografias.clearFile("Fotos.txt"); 
+        
+        DLinkedList<Fotografias> l1 = Registro.getListaFotos();
+        
+        for (int i = 0; i < l1.size(); i++) {
+            Fotografias nueva = l1.get(i);
+            Fotografias.saveFile("Fotos.txt", nueva);
+        }
+        
     System.out.println("Stage is closing");
     // Save file
 }

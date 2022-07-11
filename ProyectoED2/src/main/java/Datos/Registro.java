@@ -19,10 +19,10 @@ import java.time.LocalDate;
  */
 public class Registro {
 
-    private static DLinkedList<Fotografias> listaFotos = new DLinkedList<>();
-    private static ArrayList<String> listaAlbumes = new ArrayList<>();
+    private static DLinkedList<Fotografias> listaFotos = new DLinkedList<>(); //lista de todas las fotos
+    private static ArrayList<String> listaAlbumes = new ArrayList<>(); //lista de todos los albumes
     private static DLinkedList<Fotografias> listaFotosActual = new DLinkedList<>();
-    private static Fotografias foto = new Fotografias(0,null,null,null,null,null,null,null);
+    private static Fotografias foto = new Fotografias(0,null,null,null,null,null,null,null); 
 
     public static void setFoto(Fotografias foto) {
         Registro.foto = foto;

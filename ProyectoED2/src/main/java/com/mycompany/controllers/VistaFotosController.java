@@ -110,13 +110,13 @@ public class VistaFotosController implements Initializable{
         fotoAct = Registro.getFoto(); //foto actual
         int indice = l1.find(fotoAct);
         l1.remove(indice);
-        
-        Fotografias.clearFile(); 
+        Registro.setListaFotos(l1);
+        /*Fotografias.clearFile(); 
         
         for (int i = 0; i < l1.size(); i++) {
             Fotografias nueva = l1.get(i);
             Fotografias.saveFile("Fotos.txt", nueva);
-        }
+        }*/
         
          //hacer que cuando se elimine, regrese a la vista principal
          App.setRoot("vistaAlbumes");

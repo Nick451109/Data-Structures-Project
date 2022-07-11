@@ -162,8 +162,8 @@ public class Fotografias {
     }
 
     
-    public static void clearFile() throws IOException {
-        FileWriter fwOb = new FileWriter("Fotos.txt", false); 
+    public static void clearFile(String nomfile) throws IOException {
+        FileWriter fwOb = new FileWriter(nomfile, false); 
         PrintWriter pwOb = new PrintWriter(fwOb, false);
         pwOb.flush();
         pwOb.close();
