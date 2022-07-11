@@ -15,7 +15,7 @@ import java.util.Comparator;
  *
  * @author CAELOS JR 2018
  */
-public class Fotografias implements Comparator<Fotografias>, Comparable<Fotografias>{
+public class Fotografias {
 
     private int iD;
     private String descripcion;
@@ -37,6 +37,10 @@ public class Fotografias implements Comparator<Fotografias>, Comparable<Fotograf
         this.fecha = fecha;
         
 
+    }
+
+    public Fotografias(String lugar) {
+        this.lugar = lugar;
     }
 
     public void setFecha(LocalDate fecha) {
@@ -147,7 +151,7 @@ public class Fotografias implements Comparator<Fotografias>, Comparable<Fotograf
             sb.append(foto.album).append("|");
             sb.append(foto.comentarios).append("|");
             sb.append(foto.reacciones).append(System.getProperty("line.separator"));
-            ;;
+
 
             bw.write(sb.toString());
         } catch (IOException e) {
@@ -155,15 +159,4 @@ public class Fotografias implements Comparator<Fotografias>, Comparable<Fotograf
         }
 
     }
-
-    @Override
-    public int compare(Fotografias o1, Fotografias o2) {
-        return o1.getiD() - o2.getiD();
-    }
-
-    @Override
-    public int compareTo(Fotografias o) {
-        return this.getiD() - o.getiD();
-    }
-
 }

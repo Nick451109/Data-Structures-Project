@@ -14,8 +14,14 @@ import TDAs.DLinkedList;
 import com.mycompany.proyectoed2.App;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.Stack;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -178,7 +184,7 @@ public class VistaAlbumesController implements Initializable {
 
 
     @FXML
-    private void buscar(MouseEvent event) {
+    private void buscar(MouseEvent event) throws Exception {
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
         DLinkedList<Fotografias> lFiltrada = new DLinkedList<>();
@@ -189,15 +195,65 @@ public class VistaAlbumesController implements Initializable {
         }else if (  cbAlbum.getValue() == null || cbAlbum.getValue()== "Ninguno"){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
+            System.out.print("vEntro al else\n");
             if(rbLugar.isSelected()){
-                
-                lFiltrada = Filtros.filtrarLugar(tbusqueda, lFotografiasActual);
-                mostrarFotos(lFiltrada);
+                String lugar = tbusqueda;
+                Fotografias f = new Fotografias(lugar);
+                lFiltrada =  Filtros.findAll(lFotografiasActual,(new Comparator<Fotografias>(){
+                    public int compare(Fotografias o1, Fotografias  o2) {
+                        if( o1.getLugar().equals(o2.getLugar())){
+                            return 0;
+                        }else{
+                            return 1;
+                        }
+                    }} ),f);
+                lFotografiasActual=lFiltrada;
+                mostrarFotos(lFotografiasActual);
             }
-         //   else if(rbPersonas )
-        }            
-        
-        
+            else if(rbPersonas.isSelected()){
+                String[] lBusqueda = tbusqueda.split(",");
+                Stack<String> pBusqueda = new Stack<>();
+                int cantB= pBusqueda.size();
+                for(String s: lBusqueda){
+                    pBusqueda.push(s);
+                }Stack<Fotografias> pPersonas = new Stack<>();
+                while (!pBusqueda.isEmpty()){
+                    for(int i=0 ; i<lFotografiasActual.size();i++){
+                        Fotografias f =  lFotografiasActual.get(i); 
+                        ArrayList<String> lpersonas=f.getPersonas();
+                       // lFiltrada.addLast(f);
+                        System.out.print("LISTA DE PERSONAS"+lpersonas);
+                        System.out.print("USQUEDA ACUTAL" + pBusqueda.peek());
+                        for(int j=0;j<lpersonas.size();j++){
+                            String persona = lpersonas.get(j);
+                            if(persona.toUpperCase().equals(pBusqueda.peek().toUpperCase())){
+                                pPersonas.push(f);
+                                j=lpersonas.size();
+                            }
+                        }
+                    }pBusqueda.pop();   
+                }
+                Map<Fotografias, Integer> mapFt = new LinkedHashMap<>();
+                while(!pPersonas.isEmpty()){
+                    lFiltrada.addLast(pPersonas.peek());
+                    if(mapFt.containsKey(pPersonas.peek())){
+                        mapFt.put(pPersonas.peek(),mapFt.get(pPersonas.peek())+1);
+                        pPersonas.pop();
+                    }else{
+                        mapFt.put(pPersonas.pop(),1);
+                    }
+                }Set<Fotografias> keySet = mapFt.keySet();
+                Iterator<Fotografias> it2 = keySet.iterator();
+                while(it2.hasNext()){
+                    Fotografias foto = it2.next();
+                    Integer cantF= mapFt.get(foto);
+                    if(cantF==cantB){
+                        lFiltrada.addLast(foto);
+                    }
+                }lFotografiasActual=lFiltrada;
+                mostrarFotos(lFotografiasActual);
+            }               
+        }      
     }
 
     @FXML
@@ -229,6 +285,7 @@ public class VistaAlbumesController implements Initializable {
         txtBusqueda.setDisable(true);
         llenarCBAlbum();
         vbOpciones.setDisable(false);
+        txtBusqueda.clear();
 
     }
 
@@ -240,7 +297,6 @@ public class VistaAlbumesController implements Initializable {
         String albumSeleccionado = cbAlbum.getValue();//album que elegi en el combobox
         System.out.print(albumSeleccionado);
         if (albumSeleccionado == "Todos") {
-            
             mostrarFotos(lFotografiasOficial);
             lFotografiasActual = lFotografiasOficial;
         }else if (albumSeleccionado == "Ninguno") {
@@ -268,6 +324,14 @@ public class VistaAlbumesController implements Initializable {
     @FXML
     private void eliminarAlbum(MouseEvent event) throws IOException {
         App.setRoot("EliminarAlbum");
+    }
+
+    @FXML
+    private void ingresarBusqueda(MouseEvent event) {
+        if(rbPersonas.isSelected()){
+            Alerta.crearAlerta("Comando Invalido", "Ingresar Nombres separados por comas");  
+            
+        }
     }
 
 }

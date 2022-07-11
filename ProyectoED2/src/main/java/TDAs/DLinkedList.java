@@ -4,6 +4,7 @@
  */
 package TDAs;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -295,6 +296,30 @@ public class DLinkedList<E> implements List<E> {
         }
         return (nodoEncontrado.getPrior()).getContent();
     }
+
+    /*@Override
+    public boolean hasNext() {
+        NodeListD<E> ultimo = last;
+        NodeListD<E> nodoActual = last;
+        if(isEmpty()){
+            return false;
+        }
+        else if (size()==1){
+            return true;
+        }
+        while(nodoActual.getContent()==ultimo.getContent()){
+            
+            
+        }
+        
+    }
+
+    @Override
+    public Object next() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    */
+
 
 
 
