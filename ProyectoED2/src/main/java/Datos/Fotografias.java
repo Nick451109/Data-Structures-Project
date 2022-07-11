@@ -8,6 +8,7 @@ import TDAs.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Comparator;
 
@@ -159,4 +160,14 @@ public class Fotografias {
         }
 
     }
+
+    
+    public static void clearFile() throws IOException {
+        FileWriter fwOb = new FileWriter("Fotos.txt", false); 
+        PrintWriter pwOb = new PrintWriter(fwOb, false);
+        pwOb.flush();
+        pwOb.close();
+        fwOb.close();
+    }
+
 }
