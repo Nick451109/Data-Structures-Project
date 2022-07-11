@@ -1,7 +1,7 @@
 1|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 2|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 3|estaba en el centro|9 de Octubre|Carlos Loor,Pepe|2022-07-08|centro| |0
-4|hola|hola|hola|2022-07-08|centro| |05|pepe|pepe|pepe|2022-07-08|centro| |0
+4|hola|hola|hola|2022-07-08|centro| |5|pepe|pepe|pepe|2022-07-09|centro| |0
 5|pepe|pepe|pepe|2022-07-09|centro| |0
 6|guapa|guapa|juan|2022-07-09|centro| |0
 7|lola|lola|lolita|2022-07-09|lola| |0

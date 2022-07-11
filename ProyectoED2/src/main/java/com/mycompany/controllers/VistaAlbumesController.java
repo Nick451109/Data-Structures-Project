@@ -83,6 +83,14 @@ public class VistaAlbumesController implements Initializable {
     private ToggleGroup tgOpcion;
     
     VistaAlbumesController vistAlbCont;
+    @FXML
+    private TextField txtPersonas;
+    @FXML
+    private TextField txtLugar;
+    @FXML
+    private Label lblPersonas;
+    @FXML
+    private Label lblLugar;
 
     /**
      * Initializes the controller class.
@@ -190,76 +198,107 @@ public class VistaAlbumesController implements Initializable {
         DLinkedList<Fotografias> lFiltrada = new DLinkedList<>();
         if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
             Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
-        }else if (tbusqueda.equals("")) {
+        }else if (tbusqueda.equals("")&&!rbLugarPersonas.isSelected()) {
             Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
         }else if (  cbAlbum.getValue() == null || cbAlbum.getValue()== "Ninguno"){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
-            System.out.print("vEntro al else\n");
             if(rbLugar.isSelected()){
-                String lugar = tbusqueda;
-                Fotografias f = new Fotografias(lugar);
-                lFiltrada =  Filtros.findAll(lFotografiasActual,(new Comparator<Fotografias>(){
-                    public int compare(Fotografias o1, Fotografias  o2) {
-                        if( o1.getLugar().equals(o2.getLugar())){
-                            return 0;
-                        }else{
-                            return 1;
-                        }
-                    }} ),f);
+                lFiltrada = filtrarLugar(tbusqueda);
                 lFotografiasActual=lFiltrada;
                 mostrarFotos(lFotografiasActual);
             }
             else if(rbPersonas.isSelected()){
-                String[] lBusqueda = tbusqueda.split(",");
-                Stack<String> pBusqueda = new Stack<>();
-                int cantB= pBusqueda.size();
-                for(String s: lBusqueda){
+                lFiltrada= filtrarPersonas(tbusqueda);
+                lFotografiasActual=lFiltrada;
+                mostrarFotos(lFotografiasActual); 
+            }else if(rbLugarPersonas.isSelected()){
+                DLinkedList<Fotografias> lLugares = new DLinkedList<>();
+                lLugares= filtrarLugar(txtLugar.getText());
+                DLinkedList<Fotografias> lPersonas  = new DLinkedList<>(); 
+                lPersonas = filtrarPersonas(txtPersonas.getText());
+                for(int i=0;i<lLugares.size();i++){
+                    Fotografias foto = lLugares.get(i);
+                    if(!(lPersonas.find(foto)==null)){
+                        lFiltrada.addLast(foto);
+                    }
+                }mostrarFotos(lFiltrada);
+
+            }               
+        }      
+    }
+    public DLinkedList<Fotografias> filtrarLugar(String tbusqueda){
+        String lugar = tbusqueda;
+        Fotografias f = new Fotografias(lugar);
+        DLinkedList<Fotografias> lFiltrada =  Filtros.findAll(lFotografiasActual,(new Comparator<Fotografias>(){
+            public int compare(Fotografias o1, Fotografias  o2) {
+                if( (o1.getLugar()).toUpperCase().equals((o2.getLugar()).toUpperCase())){
+                    return 0;
+                }else{
+                   return 1;
+                }
+            }} ),f);
+        return lFiltrada;
+                
+    }
+    public DLinkedList<Fotografias> filtrarPersonas(String tbusqueda ){
+        String[] lBusqueda = tbusqueda.split(",");
+        Stack<String> pBusqueda = new Stack<>();
+        for(String s: lBusqueda){
                     pBusqueda.push(s);
-                }Stack<Fotografias> pPersonas = new Stack<>();
+                }int cantB= pBusqueda.size();
+                Stack<Fotografias> pPersonas = new Stack<>();
                 while (!pBusqueda.isEmpty()){
                     for(int i=0 ; i<lFotografiasActual.size();i++){
                         Fotografias f =  lFotografiasActual.get(i); 
                         ArrayList<String> lpersonas=f.getPersonas();
-                       // lFiltrada.addLast(f);
-                        System.out.print("LISTA DE PERSONAS"+lpersonas);
-                        System.out.print("USQUEDA ACUTAL" + pBusqueda.peek());
                         for(int j=0;j<lpersonas.size();j++){
                             String persona = lpersonas.get(j);
-                            if(persona.toUpperCase().equals(pBusqueda.peek().toUpperCase())){
+                            if(persona.toUpperCase().replace(" ","").equals(pBusqueda.peek().toUpperCase().replace(" ",""))){
                                 pPersonas.push(f);
                                 j=lpersonas.size();
                             }
                         }
                     }pBusqueda.pop();   
-                }
+                }System.out.print("PILA DE PERSONAS" + pBusqueda+ pBusqueda.size());
+
                 Map<Fotografias, Integer> mapFt = new LinkedHashMap<>();
                 while(!pPersonas.isEmpty()){
-                    lFiltrada.addLast(pPersonas.peek());
                     if(mapFt.containsKey(pPersonas.peek())){
                         mapFt.put(pPersonas.peek(),mapFt.get(pPersonas.peek())+1);
                         pPersonas.pop();
                     }else{
-                        mapFt.put(pPersonas.pop(),1);
+                        mapFt.put(pPersonas.peek(),1);
+                        pPersonas.pop();
                     }
                 }Set<Fotografias> keySet = mapFt.keySet();
                 Iterator<Fotografias> it2 = keySet.iterator();
+                DLinkedList<Fotografias> lFiltrada= new DLinkedList<>();
                 while(it2.hasNext()){
                     Fotografias foto = it2.next();
                     Integer cantF= mapFt.get(foto);
                     if(cantF==cantB){
                         lFiltrada.addLast(foto);
                     }
-                }lFotografiasActual=lFiltrada;
-                mostrarFotos(lFotografiasActual);
-            }               
-        }      
+                }return lFiltrada;
+                     
+        
     }
 
     @FXML
     private void habilitarBusqueda(MouseEvent event) {
         txtBusqueda.setDisable(false);
+        if(rbPersonas.isSelected()){
+            Alerta.crearAlerta("Informacion", "Separar las personas por comas");  
+        }else if(rbPersonas.isSelected()||rbLugarPersonas.isSelected()){
+            txtPersonas.setVisible(true);
+            txtLugar.setVisible(true);
+            lblPersonas.setVisible(true);
+            lblLugar.setVisible(true);
+            txtBusqueda.setVisible(false);
+            Alerta.crearAlerta("Informacion", "Separar las personas por comas");
 
+        }
     }
 
     @FXML
@@ -286,11 +325,23 @@ public class VistaAlbumesController implements Initializable {
         llenarCBAlbum();
         vbOpciones.setDisable(false);
         txtBusqueda.clear();
+        txtPersonas.setVisible(false);
+        txtLugar.setVisible(false);
+        lblPersonas.setVisible(false);
+        lblLugar.setVisible(false);
+        txtBusqueda.setVisible(true);
 
     }
 
     @FXML //Mustra el album seleccionado en el cbAlbum
     private void MostrarAlbum(MouseEvent event) {
+        txtBusqueda.clear();
+        txtPersonas.setVisible(false);
+        txtLugar.setVisible(false);
+        lblPersonas.setVisible(false);
+        lblLugar.setVisible(false);
+        txtBusqueda.setVisible(true);
+        
         lFotografiasOficial = Registro.getListaFotos();//linkedlist de fotografias
         //Actualizar nuevamente la lista oficial :)
         galleria.getChildren().clear();
@@ -326,12 +377,7 @@ public class VistaAlbumesController implements Initializable {
         App.setRoot("EliminarAlbum");
     }
 
-    @FXML
-    private void ingresarBusqueda(MouseEvent event) {
-        if(rbPersonas.isSelected()){
-            Alerta.crearAlerta("Comando Invalido", "Ingresar Nombres separados por comas");  
-            
-        }
-    }
+
+
 
 }
