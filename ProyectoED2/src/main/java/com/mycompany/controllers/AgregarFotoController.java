@@ -34,11 +34,10 @@ import javafx.stage.FileChooser;
  *
  * @author CAELOS JR 2018
  */
- 
 public class AgregarFotoController implements Initializable {    //falta agregar el elemento a lista de imagenes y tambien hay que poner un que la foto slaga antes de mostrar la descripcion.
-    
+
     int idImagen;
-    
+
     @FXML
     private TextField lbldescp;
     @FXML
@@ -67,11 +66,11 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         // TODO
-    }    
-    
-        public static String getExtension(String filename) {
+    }
+
+    public static String getExtension(String filename) {
         String extension = "";
 
         int i = filename.lastIndexOf('.');
@@ -84,7 +83,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
 
     @FXML
     private void seleccionarFoto(ActionEvent event) throws IOException {
-        
+
         int id = Util.nextID("Fotos.txt");
         idImagen = id;
         String descripcion = lbldescp.getText();
@@ -92,7 +91,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         String personasi = lblpersonas.getText();
         String[] personasi2 = personasi.split(",");
         ArrayList<String> personasF = new ArrayList<>();
-        for(String s: personasi2){
+        for (String s : personasi2) {
             personasF.addLast(s);
         }
         LocalDate fecha = LocalDate.now();
@@ -100,12 +99,12 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         String comentarios = " ";
         int reacciones = 0;
         //String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion
-        Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF,fecha,album, comentarios,reacciones);
-        
-        fotos.addLast(f1);
-        Registro.setListaFotos(fotos);
-        Fotografias.saveFile("Fotos.txt",f1);
-        
+        Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF, fecha, album, comentarios, reacciones);
+
+        //fotos.addLast(f1);
+        //Registro.setListaFotos(fotos);
+        //Fotografias.saveFile("Fotos.txt", f1);
+
         FileChooser fil_chooser = new FileChooser();
         fil_chooser.setInitialDirectory(new File(System.getProperty("user.home") + "\\Pictures")); //ruta predeterminada
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("IMG files (*.jpg)", "*.jpg");
@@ -116,24 +115,32 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         fil_chooser.getExtensionFilters().add(extFilter2);
         fil_chooser.getExtensionFilters().add(extFilter3);
         File file = fil_chooser.showOpenDialog(null);
-        String extension = AgregarFotoController.getExtension(file.getName());
+        if ( file != null) {
+            fotos.addLast(f1);
+            Registro.setListaFotos(fotos);
+            Fotografias.saveFile("Fotos.txt", f1);
+            String extension = AgregarFotoController.getExtension(file.getName());
 
-        Path a = Paths.get("src/main/resources/img/" + this.idImagen + "." + extension ); //implementar metodo delete de Files
+            Path a = Paths.get("src/main/resources/img/" + this.idImagen + "." + extension); //implementar metodo delete de Files
 
-        Path de = Paths.get(file.toURI());
+            Path de = Paths.get(file.toURI());
 
-        CopyOption[] options = new CopyOption[]{
-            StandardCopyOption.REPLACE_EXISTING,
-            StandardCopyOption.COPY_ATTRIBUTES
-        };
-        
-        try {
+            CopyOption[] options = new CopyOption[]{
+                StandardCopyOption.REPLACE_EXISTING,
+                StandardCopyOption.COPY_ATTRIBUTES
+            };
 
-                    Files.copy(de, a, options);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-        Alerta.crearAlerta("Inforamcion","La foto se ha creado correctamente" );
+            try {
+
+                Files.copy(de, a, options);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            Alerta.crearAlerta("Informacion", "La foto se ha creado correctamente");
+        } else {
+            Alerta.crearAlerta("Error", "No se selecciono foto");
+        }
+
         App.setRoot("vistaAlbumes");
     }
 
@@ -141,5 +148,5 @@ public class AgregarFotoController implements Initializable {    //falta agregar
     private void VentanaAnt(MouseEvent event) throws IOException {
         App.setRoot("vistaAlbumes");
     }
-    
+
 }

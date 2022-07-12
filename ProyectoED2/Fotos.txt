@@ -10,5 +10,4 @@
 10|hgvcjc|hcfj|uvgjutuy|2022-07-12|Centro| |0
 11|gg|wdxw|qszw|2022-07-12|Centro| |0
 12|testeo|test |test1,test2|2022-07-12|Centro| |0
-13|testalbfoto1|testlug1|test,pers1|2022-07-12|testalb| |0
-14|test|textlugar|perso1  maria, carlos|2022-07-12|testalb| |0
+15|lksdfasafdad|adwfasdf|fadsfasdf|2022-07-12|Centro| |0

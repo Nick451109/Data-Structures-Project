@@ -169,5 +169,19 @@ public class Fotografias {
         pwOb.close();
         fwOb.close();
     }
+    
+        public static void saveAlbum(String nomfile, String album) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomfile, true))) {
+
+            sb.append(album).append(System.getProperty("line.separator"));
+            ;;
+
+            bw.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
 
 }
