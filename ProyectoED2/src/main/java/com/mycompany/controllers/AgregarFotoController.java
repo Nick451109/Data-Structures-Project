@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Alerta;
 import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.ArrayList;
@@ -132,6 +133,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+        Alerta.crearAlerta("Inforamcion","La foto se ha creado correctamente" );
         App.setRoot("vistaAlbumes");
     }
 

@@ -8,3 +8,5 @@
 8|es una rpueba|prueba|test|2022-07-09|prueba| |0
 9|es una rpueba|prueba|test|2022-07-09|prueba| |0
 10|probando|probando|probando|2022-07-09|prueba| |0
+2|En mi viaje|Guayas|lola|2022-07-12|lola| |0
+3|En mi viaje|Guayas|lola|2022-07-12|lola| |0

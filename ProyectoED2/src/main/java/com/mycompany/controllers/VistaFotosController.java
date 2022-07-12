@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import Datos.Alerta;
 import Datos.Fotografias;
 import Datos.Registro;
 import TDAs.DLinkedList;
@@ -111,6 +112,7 @@ public class VistaFotosController implements Initializable{
         int indice = l1.find(fotoAct);
         l1.remove(indice);
         Registro.setListaFotos(l1);
+        Alerta.crearAlerta("Inforamcion","La foto se ha eliminado correctamente" );
         /*Fotografias.clearFile(); 
         
         for (int i = 0; i < l1.size(); i++) {
