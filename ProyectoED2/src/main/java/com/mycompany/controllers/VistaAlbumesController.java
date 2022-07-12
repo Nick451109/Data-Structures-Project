@@ -61,7 +61,8 @@ public class VistaAlbumesController implements Initializable {
     private Fotografias fActual;
     private DLinkedList<Fotografias> lFotografiasActual; //linkedlist con fotos pertenecientes a algun album especifico
     private DLinkedList<Fotografias> lFotografiasOficial; //linkedlist con todas las fotos
-    @FXML
+    private DLinkedList<Fotografias> lFiltrada;
+     @FXML
     private Label Album;
     @FXML
     private ComboBox<String> cbAlbum;
@@ -99,6 +100,7 @@ public class VistaAlbumesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         vistAlbCont = this;
         lFotografiasOficial = Registro.getListaFotos();
+        lFiltrada = new DLinkedList<>();
         galleria.setPadding(new Insets(15, 15, 15, 15));
         galleria.setVgap(30);
         galleria.setHgap(20);
@@ -133,24 +135,13 @@ public class VistaAlbumesController implements Initializable {
         pane.getChildren().add(imageView);
         imageView.setOnMouseClicked(event -> { //cuando se clickea se pasa a la vistafotos
             try {
+                if(!(lFiltrada.size()==0)){
+                    lFotografiasActual=lFiltrada;
+                }
                 Registro.setListaFotosActual(lFotografiasActual);
                 Registro.setFoto(foto);
                 App.setRoot("VistaFotos");
-                //Stage verAlb = new Stage();
-                //FXMLLoader loader = new FXMLLoader();
-                //AnchorPane root = (AnchorPane)loader.load(App.class.getResource("VistaFotos.fxml"));
-                //VistaFotosController FotosCInst = (VistaFotosController)loader.getController(); //aqui va el abumes controller
-                //System.out.println(foto);
-                //System.out.println(lFotografiasActual);
-                //System.out.println(vistAlbCont);
-                //System.out.println(FotosCInst);
-                //FotosCInst.recibeParametros(vistAlbCont, foto, lFotografiasActual);
-                //Scene scene = new Scene(root);
-                //verAlb.setScene(scene);
-                //verAlb.alwaysOnTopProperty();
-                //verAlb.initModality(Modality.APPLICATION_MODAL);
-                //verAlb.show();
-                //Se inserta lo que va a pasar cuando a cada imagen se le haga clic 
+ 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -198,23 +189,23 @@ public class VistaAlbumesController implements Initializable {
     private void buscar(MouseEvent event) throws Exception {
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
-        DLinkedList<Fotografias> lFiltrada = new DLinkedList<>();
+        lFiltrada = new DLinkedList<>();
         if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
             Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
-        }else if ((tbusqueda.equals(""))||(txtLugar.equals("")||txtPersonas.equals(""))) {
+        }else if ((tbusqueda.equals(""))&&(txtLugar.equals("")||txtPersonas.equals(""))) {
             Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
         }else if (  cbAlbum.getValue() == null || cbAlbum.getValue()== "Ninguno"){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
             if(rbLugar.isSelected()){
                 lFiltrada = filtrarLugar(tbusqueda);
-                lFotografiasActual=lFiltrada;
-                mostrarFotos(lFotografiasActual);
+               // lFotografiasActual=lFiltrada;
+                mostrarFotos(lFiltrada);
             }
             else if(rbPersonas.isSelected()){
                 lFiltrada= filtrarPersonas(tbusqueda);
-                lFotografiasActual=lFiltrada;
-                mostrarFotos(lFotografiasActual); 
+             //   lFotografiasActual=lFiltrada;
+                mostrarFotos(lFiltrada); 
             }else if(rbLugarPersonas.isSelected()){
                 DLinkedList<Fotografias> lLugares = new DLinkedList<>();
                 lLugares= filtrarLugar(txtLugar.getText());
@@ -226,8 +217,8 @@ public class VistaAlbumesController implements Initializable {
                     if(!(lPersonas.find(foto)==null)){
                         lFiltrada.addLast(foto);
                     }
-                }lFotografiasActual=lFiltrada;
-                mostrarFotos(lFotografiasActual);
+                }//lFotografiasActual=lFiltrada;
+                mostrarFotos(lFiltrada);
 
             }else if(rbDescripcion.isSelected()){
                 for(int i=0; i<lFotografiasActual.size();i++){
@@ -237,7 +228,7 @@ public class VistaAlbumesController implements Initializable {
                         lFiltrada.addLast(foto);
                     }
                     
-                }System.out.print(lFotografiasActual);
+                }//System.out.print(lFotografiasActual);
                 mostrarFotos(lFiltrada); 
             }                
         }      
@@ -356,6 +347,7 @@ public class VistaAlbumesController implements Initializable {
 
     @FXML //Mustra el album seleccionado en el cbAlbum
     private void MostrarAlbum(MouseEvent event) {
+        lFiltrada.clear();
         txtBusqueda.clear();
         txtPersonas.setVisible(false);
         txtLugar.setVisible(false);
