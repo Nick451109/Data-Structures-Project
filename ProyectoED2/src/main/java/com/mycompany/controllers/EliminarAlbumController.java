@@ -12,6 +12,9 @@ import TDAs.DLinkedList;
 import com.mycompany.proyectoed2.App;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,26 +47,46 @@ public class EliminarAlbumController implements Initializable {
 
     @FXML
     private void EliminarAlb(MouseEvent event) throws IOException {
-        String albumSeleccionado = comboAlb.getValue();
-        DLinkedList<Fotografias> lFotografias = Registro.getListaFotos();
+        String albumSeleccionado = comboAlb.getValue(); //album que ingreso
+        DLinkedList<Fotografias> lFotografias = Registro.getListaFotos(); //albumes actuales
+        
         if (albumSeleccionado ==null){
             Alerta.crearAlerta("Opcion Invalida", "No se ha seleccionado ningun album");
         }else {
-            for( int i = lFotografias.size(); i >= 0; i-- ){
-                Fotografias foto= lFotografias.get(i);
-                if(albumSeleccionado.equals((foto.getAlbum()))){
-                   lFotografias.remove(i); 
+            for( int i = lFotografias.size(); i >= 0; i-- ){ //recorro albumes actuales
+                Fotografias foto= lFotografias.get(i); 
+                if(albumSeleccionado.equals((foto.getAlbum()))){ //si el album del combo que selecciono es igual a un album de la linkedlist
+                   String ruta = "src/main/resources/img/" + foto.getiD() + ".jpg";
+                   Path rutaconv = Paths.get(ruta);
+                   
+                    lFotografias.remove(i); //remuevo ese album seleccionado
+                    Files.delete(rutaconv);
+                   
                 }
             }
             Registro.setListaFotos(lFotografias);
-        }    
+        }
+        
         for(int i = 0; i < albs.size(); i++){
             if( albs.get(i).equals(comboAlb.getValue())){
                 albs.remove(i);
             }
+            
+            
         }
+        DLinkedList<Fotografias> l1 = Registro.getListaFotos();
+        
+        
+        for (int i = 0; i < l1.size(); i++) {
+            Fotografias nueva = l1.get(i);
+            Fotografias.saveFile("Fotos.txt", nueva);
+        }
+        
         Registro.setListaAlbumes(albs);
+         Fotografias.clearFile("AlbumL.txt"); 
+        Registro.cargaListaALbum();
         App.setRoot("VistaAlbumes");
+        
     }
 
     @FXML
