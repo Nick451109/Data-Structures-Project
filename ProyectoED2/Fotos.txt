@@ -1,12 +1,14 @@
 1|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 2|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
-3|estaba en el centro|9 de Octubre|Carlos Loor,Pepe|2022-07-08|centro| |0
-4|hola|hola|hola|2022-07-08|centro| |5
-5|pepe|pepe|pepe|2022-07-09|centro| |0
-6|guapa|guapa|juan|2022-07-09|centro| |0
-7|lola|lola|lolita|2022-07-09|lola| |0
-8|es una rpueba|prueba|test|2022-07-09|prueba| |0
-9|es una rpueba|prueba|test|2022-07-09|prueba| |0
-10|probando|probando|probando|2022-07-09|prueba| |0
-2|En mi viaje|Guayas|lola|2022-07-12|lola| |0
-3|En mi viaje|Guayas|lola|2022-07-12|lola| |0
+3|pruebapunt|puntero|punt1|2022-07-12|Centro| |0
+4|tg|aervaerv|avraer|2022-07-12|Centro| |0
+5|34fr34f|34343|reverv|2022-07-12|Centro| |0
+6|hvkuvtr|g45|45g45g|2022-07-12|Centro| |0
+7|54g45|5g45g4|Buenas|2022-07-12|Centro| |0
+8|rtbgrbtg|rtgrtg|Buenas2|2022-07-12|Centro| |0
+9|vkuvyuk|jhvkv|Buenas,Buenas3|2022-07-12|Centro| |0
+10|hgvcjc|hcfj|uvgjutuy|2022-07-12|Centro| |0
+11|gg|wdxw|qszw|2022-07-12|Centro| |0
+12|testeo|test |test1,test2|2022-07-12|Centro| |0
+13|testalbfoto1|testlug1|test,pers1|2022-07-12|testalb| |0
+14|test|textlugar|perso1  maria, carlos|2022-07-12|testalb| |0
