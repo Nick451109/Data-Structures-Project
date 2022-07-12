@@ -28,12 +28,18 @@ public class Util {
         try (BufferedReader bw = new BufferedReader(new FileReader(nomfile))) {
             String linea;
             while ((linea = bw.readLine()) != null) {
-                String [] tokens = linea.split("|");
+                String[] tokens = linea.split("\\|"); //[1,jvvuv,vuy]
+                for (String s: tokens){
+                    System.out.println(s);
+                }
                 id = Integer.parseInt(tokens[0]);
+                
             }
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println("INCREMENTADO");
+        System.out.println(id+1);//1
         return id+1;        
     }
     
