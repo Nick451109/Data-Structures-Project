@@ -8,17 +8,18 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
    <children>
       <Label fx:id="Album" layoutX="107.0" layoutY="25.0" prefHeight="18.0" prefWidth="102.0" />
       <ComboBox id="Seleccionar Album" fx:id="cbAlbum" layoutX="45.0" layoutY="30.0" onMouseClicked="#SeleccionarAlbum" prefWidth="150.0" promptText="Seleccionar Album" />
-      <ScrollPane layoutX="6.0" layoutY="74.0" prefHeight="324.0" prefWidth="446.0">
+      <ScrollPane layoutX="6.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="446.0">
          <content>
-            <FlowPane fx:id="galleria" prefHeight="319.0" prefWidth="438.0">
+            <FlowPane fx:id="galleria" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="486.0" prefWidth="426.0">
                <opaqueInsets>
                   <Insets bottom="50.0" left="50.0" right="52.0" top="50.0" />
                </opaqueInsets></FlowPane>
@@ -63,7 +64,10 @@
             <Insets bottom="20.0" />
          </padding>
       </VBox>
-      <Button layoutX="519.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:" />
+      <Button alignment="CENTER" layoutX="519.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:">
+         <effect>
+            <Glow />
+         </effect></Button>
       <Button layoutX="209.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#MostrarAlbum" text="Mostrar" />
       <Button layoutX="475.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#AnadirFotos" text="Añadir Foto" />
       <Button layoutX="470.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#AnadirAlbum" text="Añadir albúm" />
