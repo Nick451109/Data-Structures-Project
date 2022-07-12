@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -49,6 +50,14 @@ public class AgregarFotoController implements Initializable {    //falta agregar
     @FXML
     private ComboBox<String> AlbDisp;
     private DLinkedList<Fotografias> fotos;
+    @FXML
+    private TextField fecha2;
+    @FXML
+    private TextField fecha1;
+    @FXML
+    private TextField fecha3;
+    @FXML
+    private DatePicker datepck;
 
     /**
      * Initializes the controller class.
@@ -94,7 +103,10 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         for (String s : personasi2) {
             personasF.addLast(s);
         }
-        LocalDate fecha = LocalDate.now();
+        //LocalDate fecha = LocalDate.now();
+        //anio, mes, dia
+        LocalDate fecha = datepck.getValue();
+        
         String album = AlbDisp.getValue();// String album = lblalbum.getText();
         String comentarios = " ";
         int reacciones = 0;
