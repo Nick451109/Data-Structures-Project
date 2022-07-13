@@ -1,2 +1,4 @@
 1|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
 2|fotos de mi viaje|guayaquil|juan, nick|2022-07-01|Centro| |0
+3|Viaje Tungurahua|Tungurahua|Camila, Cristian|2022-07-11|VIAJES| |0
+4|camila paseo|Quito|Camila|2022-07-10|camila| |0
