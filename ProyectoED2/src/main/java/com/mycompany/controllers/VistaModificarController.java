@@ -29,14 +29,14 @@ import javafx.scene.layout.Pane;
  */
 public class VistaModificarController implements Initializable { //agregar la laerta de que los nombres de las personas deben estar separados por comas
 
-    @FXML
-    private Label decripLbl;
-    @FXML
-    private Label decripLgr;
+    //FXML
+    //private Label decripLbl;
+    //@FXML
+    //private Label decripLgr;
     @FXML
     private Label descripFech;
-    @FXML
-    private Label descripAlb;
+    //@FXML
+    //private Label descripAlb;
     @FXML
     private TextField personasCambio;
     private Fotografias fotoAct;
@@ -62,13 +62,13 @@ public class VistaModificarController implements Initializable { //agregar la la
             }
         fotoAct = Registro.getFoto();
         paneImg.getChildren().clear();
-        ListaAlb.setValue(fotoAct.getAlbum());
-        descripAlb.setText(fotoAct.getAlbum());
-        decripLbl.setText(fotoAct.getDescripcion());
+        ListaAlb.setValue(fotoAct.getAlbum()); // lista de albumes
+        //descripAlb.setText(fotoAct.getAlbum());
+        //decripLbl.setText(fotoAct.getDescripcion());
         LblDescripcion.setText(fotoAct.getDescripcion()); // la descripcion 
-        decripLgr.setText(fotoAct.getLugar());
+        //decripLgr.setText(fotoAct.getLugar());
         LblLugar.setText(fotoAct.getLugar());  //obten en el lugar 
-        personasCambio.setText(fotoAct.getPersonas().toString());
+        personasCambio.setText(fotoAct.getPersonas().toString()); //obtiene las personas
         descripFech.setText(fotoAct.getFecha().toString());
         final Image image = new Image("file:./src/main/resources/img/" + fotoAct.getiD() + ".jpg", 200, 200, true, false);
         ImageView imageView = new ImageView(image);
