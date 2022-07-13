@@ -13,3 +13,5 @@
 15|lksdfasafdad|adwfasdf|fadsfasdf|2022-07-12|Centro| |0
 16|pruebafecha|pruebafecha|pruebafecha|2014-02-08|Centro| |0
 17|test|test|test|2022-07-29|Centro| |0
+18|test 3|test 3|test 3|2022-07-05|album3| |0
+19|test 2 modded|test 2 modded|test 2 modded|2022-06-10|album3| |0
