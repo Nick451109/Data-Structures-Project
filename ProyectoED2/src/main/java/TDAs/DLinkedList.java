@@ -13,7 +13,6 @@ import java.util.Iterator;
  */
 public class DLinkedList<E> implements List<E> {
 
-    //private NodeList<E> first;
     private NodeListD<E> last;
 
     public DLinkedList() {
@@ -94,7 +93,7 @@ public class DLinkedList<E> implements List<E> {
     }
 
     @Override
-    public E removeLast() { //revisar que sucede si se queda un solo elemento(creo que la respuesta es poner un if es 1,el valor last se lo deja en null 
+    public E removeLast() { 
         if (this.isEmpty()) {
             System.out.println("LinkedList vacia");
             return null;
@@ -103,9 +102,7 @@ public class DLinkedList<E> implements List<E> {
             this.last = null;
         }
         NodeListD<E> eliminado = last;
-        //NodeList<E> t;
-        //for (t = this.getFirst(); t.getNext() == last; t = t.getNext()) {
-        //}
+
         eliminado.getPrior().setNext(eliminado.getNext());
         eliminado.getNext().setPrior(eliminado.getPrior());
         this.last = eliminado.getPrior();
@@ -128,10 +125,6 @@ public class DLinkedList<E> implements List<E> {
             if (t == last.getNext())
                 break;
         }
-        //for (t = this.getLast().getNext(); t != last; t = t.getNext()) {
-        //    cont++;
-        //}
-        //cont++;
         return cont;
     }
 
@@ -297,28 +290,7 @@ public class DLinkedList<E> implements List<E> {
         return (nodoEncontrado.getPrior()).getContent();
     }
 
-    /*@Override
-    public boolean hasNext() {
-        NodeListD<E> ultimo = last;
-        NodeListD<E> nodoActual = last;
-        if(isEmpty()){
-            return false;
-        }
-        else if (size()==1){
-            return true;
-        }
-        while(nodoActual.getContent()==ultimo.getContent()){
-            
-            
-        }
-        
-    }
 
-    @Override
-    public Object next() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    */
 
 
 
@@ -326,10 +298,3 @@ public class DLinkedList<E> implements List<E> {
 
 
 }
-
-//insertar un elemento en medio de la lista
-                   //NodeListD<E> nuevo = new NodeListD<>(element);
-                   //nuevo.setNext(last.getNext());
-                   //nuevo.setPrior(last);
-                   //last.getNext().setPrior(nuevo);
-                   //last.setNext(nuevo);

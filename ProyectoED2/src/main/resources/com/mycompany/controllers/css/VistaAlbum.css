@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12 jul 2022, 20:45:02
+    Author     : USUARIO
+*/
+
+#opcion{
+   -fx-font-size: 12px;
+   -fx-font-family: "Arial ";
+   /*-fx-fill: #818181;*/
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+   -fx-text-fill: #000000;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#combo_box {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-background-color: linear-gradient(#ADD8E6, #ADD8E6);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#AnchorPane{
+    -fx-background-color: linear-gradient(#F5F5DC, #F5F5DC);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#Titulo{
+   -fx-font-size: 40px;
+   -fx-font-family: "Gabriola";
+   /*-fx-fill: #818181;*/
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+   -fx-text-fill: #000000;
+}

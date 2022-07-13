@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaModificarController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../controllers/css/VistaAlbum.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaModificarController">
    <children>
-      <Label layoutX="185.0" layoutY="35.0" text="Modificar foto">
+      <Label id="Titulo" layoutX="185.0" layoutY="35.0" text="Modificar foto">
          <font>
             <Font name="Bauhaus 93" size="36.0" />
          </font>

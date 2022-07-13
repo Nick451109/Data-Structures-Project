@@ -29,6 +29,7 @@ public class CrearAlbumController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Se inicializo CrearAlbum");
         System.out.println("________________________________________________");
         System.out.println(Registro.getListaFotos());
         System.out.println("_______________________________________________");

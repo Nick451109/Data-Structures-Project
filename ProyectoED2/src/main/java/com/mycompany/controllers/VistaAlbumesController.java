@@ -76,7 +76,6 @@ public class VistaAlbumesController implements Initializable {
     private RadioButton rbLugarPersonas;
     @FXML
     private RadioButton rbDescripcion;
-    @FXML
     private RadioButton rbReacciones;
     @FXML
     private VBox vbOpciones;
@@ -98,6 +97,7 @@ public class VistaAlbumesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Se inicializo vista album Controller\n");
         vistAlbCont = this;
         lFotografiasOficial = Registro.getListaFotos();
         lFiltrada = new DLinkedList<>();
@@ -187,10 +187,11 @@ public class VistaAlbumesController implements Initializable {
 
     @FXML
     private void buscar(MouseEvent event) throws Exception {
+        System.out.println("Se realizo Busqueda\n");
         galleria.getChildren().clear();
         String tbusqueda = txtBusqueda.getText();
         lFiltrada = new DLinkedList<>();
-        if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() || rbReacciones.isSelected())) {
+        if (!(rbLugar.isSelected() || rbPersonas.isSelected() || rbLugarPersonas.isSelected() || rbDescripcion.isSelected() )) {
             Alerta.crearAlerta("Comando Invalido", "Seleccione un tipo de Busqueda");
         }else if ((tbusqueda.equals(""))&&(txtLugar.equals("")||txtPersonas.equals(""))) {
             Alerta.crearAlerta("Comando Invalido", "No se ha ingresado Busqueda");
@@ -238,7 +239,7 @@ public class VistaAlbumesController implements Initializable {
         Fotografias f = new Fotografias(lugar);
         DLinkedList<Fotografias> lFiltrada =  Filtros.findAll(lFotografiasActual,(new Comparator<Fotografias>(){
             public int compare(Fotografias o1, Fotografias  o2) {
-                if( (o1.getLugar()).toUpperCase().equals((o2.getLugar()).toUpperCase())){
+                if( (o1.getLugar()).replace(" ","").toUpperCase().equals((o2.getLugar()).replace(" ","").toUpperCase())){
                     return 0;
                 }else{
                    return 1;
@@ -294,8 +295,16 @@ public class VistaAlbumesController implements Initializable {
     @FXML
     private void habilitarBusqueda(MouseEvent event) {
         txtBusqueda.setDisable(false);
+        txtBusqueda.clear();
+        txtPersonas.clear();
+        txtLugar.clear();
         if(rbPersonas.isSelected()){
             Alerta.crearAlerta("Informacion", "Separar las personas por comas");  
+            txtPersonas.setVisible(false);
+            txtLugar.setVisible(false);
+            lblPersonas.setVisible(false);
+            lblLugar.setVisible(false);
+            txtBusqueda.setVisible(true);
         }else if(rbLugarPersonas.isSelected()){
             txtPersonas.setVisible(true);
             txtLugar.setVisible(true);
@@ -332,11 +341,12 @@ public class VistaAlbumesController implements Initializable {
         rbPersonas.setSelected(false);
         rbLugarPersonas.setSelected(false);
         rbDescripcion.setSelected(false);
-        rbReacciones.setSelected(false);
         txtBusqueda.setDisable(true);
         llenarCBAlbum();
         vbOpciones.setDisable(false);
         txtBusqueda.clear();
+        txtPersonas.clear();
+        txtLugar.clear();
         txtPersonas.setVisible(false);
         txtLugar.setVisible(false);
         lblPersonas.setVisible(false);
@@ -349,6 +359,8 @@ public class VistaAlbumesController implements Initializable {
     private void MostrarAlbum(MouseEvent event) {
         lFiltrada.clear();
         txtBusqueda.clear();
+        txtPersonas.clear();
+        txtLugar.clear();
         txtPersonas.setVisible(false);
         txtLugar.setVisible(false);
         lblPersonas.setVisible(false);

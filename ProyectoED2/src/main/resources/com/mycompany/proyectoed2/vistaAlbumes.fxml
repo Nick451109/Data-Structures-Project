@@ -13,22 +13,22 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
+<AnchorPane id="AnchorPane" stylesheets="@../controllers/css/VistaAlbum.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaAlbumesController">
    <children>
       <Label fx:id="Album" layoutX="107.0" layoutY="25.0" prefHeight="18.0" prefWidth="102.0" />
-      <ComboBox id="Seleccionar Album" fx:id="cbAlbum" layoutX="45.0" layoutY="30.0" onMouseClicked="#SeleccionarAlbum" prefWidth="150.0" promptText="Seleccionar Album" />
-      <ScrollPane layoutX="6.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="446.0">
+      <ComboBox id="combo_box" fx:id="cbAlbum" layoutX="45.0" layoutY="30.0" onMouseClicked="#SeleccionarAlbum" prefWidth="150.0" promptText="Seleccionar Album" />
+      <ScrollPane layoutX="46.0" layoutY="76.0" prefHeight="333.0" prefWidth="398.0">
          <content>
-            <FlowPane fx:id="galleria" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="486.0" prefWidth="426.0">
+            <FlowPane fx:id="galleria" prefHeight="312.0" prefWidth="395.0">
                <opaqueInsets>
                   <Insets bottom="50.0" left="50.0" right="52.0" top="50.0" />
                </opaqueInsets></FlowPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="txtBusqueda" disable="true" layoutX="389.0" layoutY="29.0" prefHeight="26.0" prefWidth="125.0" />
-      <VBox fx:id="vbOpciones" disable="true" layoutX="460.0" layoutY="82.0" prefHeight="208.0" prefWidth="118.0">
+      <TextField fx:id="txtBusqueda" disable="true" layoutX="363.0" layoutY="29.0" prefHeight="26.0" prefWidth="125.0" />
+      <VBox fx:id="vbOpciones" disable="true" layoutX="461.0" layoutY="96.0" prefHeight="139.0" prefWidth="118.0">
          <children>
-            <RadioButton fx:id="rbLugar" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Lugar">
+            <RadioButton id="opcion" fx:id="rbLugar" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Lugar">
                <padding>
                   <Insets bottom="20.0" />
                </padding>
@@ -36,22 +36,17 @@
                   <ToggleGroup fx:id="tgOpcion" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbPersonas" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Personas" toggleGroup="$tgOpcion">
+            <RadioButton id="opcion" fx:id="rbPersonas" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Personas" toggleGroup="$tgOpcion">
                <padding>
                   <Insets bottom="20.0" />
                </padding>
             </RadioButton>
-            <RadioButton fx:id="rbLugarPersonas" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Lugar y Personas" toggleGroup="$tgOpcion">
+            <RadioButton id="opcion" fx:id="rbLugarPersonas" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Lugar y Personas" toggleGroup="$tgOpcion">
                <padding>
                   <Insets bottom="20.0" />
                </padding>
             </RadioButton>
-            <RadioButton fx:id="rbDescripcion" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Descripcion" toggleGroup="$tgOpcion">
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
-            </RadioButton>
-            <RadioButton fx:id="rbReacciones" lineSpacing="50.0" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Reacciones" toggleGroup="$tgOpcion">
+            <RadioButton id="opcion" fx:id="rbDescripcion" mnemonicParsing="false" onMouseClicked="#habilitarBusqueda" text="Descripcion" toggleGroup="$tgOpcion">
                <padding>
                   <Insets bottom="20.0" />
                </padding>
@@ -64,17 +59,17 @@
             <Insets bottom="20.0" />
          </padding>
       </VBox>
-      <Button alignment="CENTER" layoutX="519.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:">
+      <Button alignment="CENTER" layoutX="521.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar:">
          <effect>
             <Glow />
          </effect></Button>
       <Button layoutX="209.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#MostrarAlbum" text="Mostrar" />
-      <Button layoutX="475.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#AnadirFotos" text="Añadir Foto" />
-      <Button layoutX="470.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#AnadirAlbum" text="Añadir albúm" />
-      <Button layoutX="466.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#eliminarAlbum" text="Eliminar Albúm" />
+      <Button layoutX="480.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#AnadirAlbum" text="Añadir albúm" />
+      <Button layoutX="479.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#eliminarAlbum" text="Eliminar Albúm" />
       <TextField fx:id="txtPersonas" layoutX="365.0" layoutY="12.0" visible="false" />
       <TextField fx:id="txtLugar" layoutX="365.0" layoutY="43.0" visible="false" />
       <Label fx:id="lblPersonas" layoutX="311.0" layoutY="20.0" text="Personas" visible="false" />
       <Label fx:id="lblLugar" layoutX="320.0" layoutY="46.0" text="Lugar" visible="false" />
+      <Button layoutX="480.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#AnadirFotos" text="Añadir Foto" />
    </children>
 </AnchorPane>

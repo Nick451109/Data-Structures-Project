@@ -84,8 +84,7 @@ public class EliminarAlbumController implements Initializable {
         
         Registro.setListaAlbumes(albs);
          Fotografias.clearFile("AlbumL.txt"); 
-        //Registro.cargaListaALbum();
-        ArrayList<String> albumes = Registro.getListaAlbumes();
+         ArrayList<String> albumes = Registro.getListaAlbumes();
         
         for (int i = 0; i < albumes.size(); i++) {
             String album = albumes.get(i);

@@ -64,19 +64,17 @@ public class Registro {
     
     //metodo para cargar fotos a la variable listaFotos
     public static void cargaListaFotos() {
+        System.out.println("Se esta cargando la lista Fotos\n");   
         DLinkedList<Fotografias> lFotos = new DLinkedList<>();
         try (BufferedReader bw = new BufferedReader(new FileReader("Fotos.txt"))) {
             String linea;
-            System.out.println("hola1--------------------------------------------------");
             while ((linea = bw.readLine()) != null) {
                 String[] tokens = linea.split("\\|");
                 String[] personas = tokens[3].split(",");
-                System.out.println("hola2--------------------------------------------------");
                 ArrayList<String> personasAgg = new ArrayList<>();
                 for (String s : personas) {
-                    System.out.println(s+"----------------------------------------------------");
                     personasAgg.addLast(s);
-                    System.out.println("si se paso_______________________________________________");
+
                 }
                 System.out.println(personasAgg.toString());
                 System.out.println(tokens[0]+tokens[1]+tokens[2]+personasAgg.toString()+tokens[4]+tokens[5]+tokens[6]+tokens[7]);
@@ -90,34 +88,31 @@ public class Registro {
                         tokens[6],
                         Integer.valueOf(tokens[7]));
                 System.out.println(m.toString());
-                System.out.println("salimos del objeto");
                 lFotos.addLast(m);
-                System.out.println("se añade a la primera");
                 listaFotos=lFotos;
-                System.out.println("hola3--------------------------------------------------");
+
             }
         } catch (IOException e) {
-            System.out.println("hay error--------------------------***************");
+            System.out.println("No se cargo la lista fotos\n");
             System.out.println(e.getClass());
         }
     }
     
     public static void cargaListaALbum() {
+        System.out.println("Se esta cargando la lista album\n");
         try (BufferedReader bw = new BufferedReader(new FileReader("AlbumL.txt"))) {
             String linea;
-            System.out.println("hola1--------------------------------------------------");
             while ((linea = bw.readLine()) != null){ 
                 listaAlbumes.addLast(linea.trim());
-                System.out.println("hola--------------------------------------------------");
             }
         } catch (IOException e) {
-            System.out.println("hay error--------------------------***************");
+            System.out.println("ERROR! No se pudo cargar la lista Album\n");
             System.out.println(e.getClass());
         }
     }
     
     public static void crearAlbum(String nombreA){
-        
+        System.out.println("Se creo un Album\n");        
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("AlbumL.txt", true))) {
             //id, descripcion, lugar, personas,fecha,album, comentarios,reacciones
@@ -131,6 +126,7 @@ public class Registro {
     }
     
     public static Fotografias buscarPAlbum(String S){
+        System.out.println("Se esta buscando un Album\n");        
         String albumComp = "";
         for( int i = 0; i < listaFotos.size(); i++ ){
             albumComp = listaFotos.get(i).getAlbum();
@@ -141,6 +137,7 @@ public class Registro {
     }
     
     public static Fotografias buscarSAlbum(Fotografias f){
+        System.out.println("Se esta buscando un Album\n");        
         Integer posAct = listaFotos.find(f);
         for( int i = posAct; i < listaFotos.size() + posAct; i++ ){
             if(f.getAlbum().equals(listaFotos.get(i).getAlbum()))
@@ -150,6 +147,7 @@ public class Registro {
     }
     
     public static Fotografias buscarPAlbum(Fotografias f){
+        System.out.println("Se esta buscando un Album\n");        
         Integer posAct = listaFotos.find(f);
         for( int i = posAct; i < listaFotos.size() + posAct; i++ ){
             if(f.getAlbum().equals(listaFotos.get(i).getAlbum()))

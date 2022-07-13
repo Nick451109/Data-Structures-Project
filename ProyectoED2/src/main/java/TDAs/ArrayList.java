@@ -96,11 +96,10 @@ public class ArrayList<E> implements List<E>{
     public E removeFirst() throws Exception {
         if (isEmpty()) {
             throw new Exception("No hay elementos a borrar");
-            //System.out.println("No hay elementos a borrar");
-            //return null;
+
         }
         E retorno = elements[0];
-        for (int i = 0; i <= effectiveSize - 1; i++) { //creo que asi va 
+        for (int i = 0; i <= effectiveSize - 1; i++) { 
             elements[i] = elements[i + 1];
         }
         effectiveSize--;

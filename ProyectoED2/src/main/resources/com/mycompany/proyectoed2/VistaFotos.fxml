@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaFotosController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../controllers/css/VistaAlbum.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.VistaFotosController">
    <children>
-      <Label layoutX="189.0" layoutY="14.0" text="Albúm Actual ">
+      <Label id="Titulo" layoutX="189.0" layoutY="14.0" text="Albúm Actual ">
          <font>
             <Font name="Bauhaus 93" size="36.0" />
          </font>

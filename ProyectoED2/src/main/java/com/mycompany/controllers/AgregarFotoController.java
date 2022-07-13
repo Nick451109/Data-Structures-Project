@@ -64,19 +64,17 @@ public class AgregarFotoController implements Initializable {    //falta agregar
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Se inicializo la vista AgregarFotos\n");       
         fotos = Registro.getListaFotos();
         try {
             ArrayList<String> albumes = Registro.getListaAlbumes();
             for (int i = 0; i < albumes.size(); i++) {
-                System.out.println("entramos");
-                System.out.println(albumes.get(i));
                 AlbDisp.getItems().add(albumes.get(i));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        // TODO
     }
 
     public static String getExtension(String filename) {
@@ -92,7 +90,7 @@ public class AgregarFotoController implements Initializable {    //falta agregar
 
     @FXML
     private void seleccionarFoto(ActionEvent event) throws IOException {
-
+         System.out.println("Se selecciono Foto\n");
         int id = Util.nextID("Fotos.txt");
         idImagen = id;
         String descripcion = lbldescp.getText();
@@ -103,19 +101,14 @@ public class AgregarFotoController implements Initializable {    //falta agregar
         for (String s : personasi2) {
             personasF.addLast(s);
         }
-        //LocalDate fecha = LocalDate.now();
-        //anio, mes, dia
+
         LocalDate fecha = datepck.getValue();
         
         String album = AlbDisp.getValue();// String album = lblalbum.getText();
         String comentarios = " ";
         int reacciones = 0;
-        //String iD, String descripcion, String lugar, ArrayList<String> personas, LocalDate fecha, String album, String comentarios, Integer reaccion
         Fotografias f1 = new Fotografias(id, descripcion, lugar, personasF, fecha, album, comentarios, reacciones);
 
-        //fotos.addLast(f1);
-        //Registro.setListaFotos(fotos);
-        //Fotografias.saveFile("Fotos.txt", f1);
 
         FileChooser fil_chooser = new FileChooser();
         fil_chooser.setInitialDirectory(new File(System.getProperty("user.home") + "\\Pictures")); //ruta predeterminada
